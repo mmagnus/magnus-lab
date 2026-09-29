@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Laboratory of RNA Design and Therapeutics, Centre of New Technologies, University of Warsaw. Deep learning for RNA 3D structure and the design of aptamers, therapeutic mRNA and modified RNA.">
+<title>Magnus Lab — RNA Design &amp; Therapeutics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ink:#101720;
+  --ink-2:#3d4a58;
+  --ink-3:#6b7885;
+  --paper:#fff7ef;
+  --surface:#ffffff;
+  --line:#f0dcc8;
+  --line-soft:#f8e9db;
+  --accent:#c4460a;
+  --accent-2:#f97316;
+  --accent-3:#ffb057;
+  --accent-soft:#ffe8d2;
+  --base-a:#2f9e5e;
+  --base-c:#2a67cf;
+  --base-g:#9a7208;
+  --base-u:#cf4437;
+  --shadow:0 1px 2px rgba(16,23,32,.05), 0 12px 32px -20px rgba(16,23,32,.35);
+  --maxw:1120px;
+  --font-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+/* This page commits to a single light palette in every viewer theme. */
+:root, :root[data-theme="dark"], :root[data-theme="light"]{color-scheme:light}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font-body); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:700; line-height:1.08; text-wrap:balance; margin:0}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+
+.wrap{width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:20px}
+section{padding-block:clamp(56px,7vw,104px); border-top:1px solid var(--line-soft)}
+.eyebrow{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--accent); font-weight:600;
+}
+.sec-head{display:flex; flex-direction:column; gap:14px; max-width:60ch; margin-bottom:clamp(28px,4vw,48px)}
+.sec-head h2{font-size:clamp(28px,3.6vw,42px); letter-spacing:-.02em}
+.sec-head p{color:var(--ink-2); font-size:18px}
+
+/* ---------- header ---------- */
+header{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:40;
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line-soft);
+  position:sticky;
+}
+header::before{
+  content:""; display:block; height:4px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2) 45%,var(--accent-3) 80%,var(--base-g));
+}
+.bar{position:relative; display:flex; align-items:center; gap:24px; min-height:66px}
+.brand{display:flex; align-items:center; gap:11px; text-decoration:none; margin-right:auto}
+.mark{
+  width:34px; height:34px; border-radius:9px; flex:none;
+  background:linear-gradient(150deg,var(--accent-2),var(--accent));
+  display:grid; place-items:center; color:#fff;
+  font-family:var(--font-mono); font-size:13px; font-weight:600; letter-spacing:.02em;
+}
+.brand b{font-family:var(--font-display); font-size:17px; letter-spacing:-.015em; display:block; line-height:1.15}
+.brand span{font-family:var(--font-mono); font-size:9.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+nav{display:flex; gap:24px; align-items:center; flex-wrap:wrap}
+nav a{
+  font-family:var(--font-display); font-size:14.5px; font-weight:500;
+  text-decoration:none; color:var(--ink-2); padding-block:4px;
+  border-bottom:1.5px solid transparent;
+}
+nav a:hover{color:var(--ink); border-bottom-color:var(--accent)}
+nav a.nav-cta{display:none}
+.burger{
+  display:none; order:2; margin-left:auto;
+  width:42px; height:38px; padding:9px 8px; border:1px solid var(--line);
+  border-radius:10px; background:var(--surface); cursor:pointer;
+  flex-direction:column; justify-content:space-between; gap:0;
+}
+.burger span{display:block; height:2px; width:100%; background:var(--ink); border-radius:2px;
+  transition:transform .22s ease, opacity .18s ease}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+  white-space:nowrap; flex:none;
+  font-family:var(--font-display); font-weight:600; font-size:15px;
+  padding:11px 20px; border-radius:999px; border:1px solid transparent;
+}
+.btn-primary{background:var(--accent); color:#fff}
+.btn-primary:hover{background:var(--ink); color:var(--paper)}
+.btn-ghost{border-color:var(--line); background:var(--surface); color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent); color:var(--accent)}
+.btn-sm{padding:8px 16px; font-size:14px}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(48px,6.5vw,88px); border-top:0}
+.hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(32px,5vw,64px); align-items:center}
+.pill{
+  display:inline-flex; align-items:center; gap:9px; align-self:flex-start;
+  border:1px solid var(--line); background:var(--surface); border-radius:999px;
+  padding:6px 14px 6px 11px;
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-2);
+}
+.dot{width:7px; height:7px; border-radius:50%; background:var(--accent-2)}
+.hero h1{font-size:clamp(38px,6vw,68px); font-weight:800; letter-spacing:-.035em; margin-block:22px 20px}
+.hero h1 em{
+  font-style:normal; color:var(--accent);
+  background:linear-gradient(180deg,transparent 62%,var(--accent-3) 62%,var(--accent-3) 92%,transparent 92%);
+  padding-inline:2px;
+}
+.hero{position:relative; overflow:hidden}
+.hero::before{
+  content:""; position:absolute; inset:-30% 40% 30% -20%; pointer-events:none;
+  background:radial-gradient(45% 45% at 40% 60%, color-mix(in srgb,var(--accent-2) 22%,transparent), transparent 70%);
+  z-index:-1;
+}
+.hero .wrap{position:relative}
+.hero .lede{font-size:clamp(18px,1.5vw,20px); color:var(--ink-2); max-width:56ch}
+.hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:30px}
+.hero-meta{
+  margin-top:34px; padding-top:22px; border-top:1px solid var(--line-soft);
+  display:flex; gap:32px; flex-wrap:wrap;
+}
+.hero-meta div{display:flex; flex-direction:column; gap:3px}
+.hero-meta b{font-family:var(--font-display); font-size:20px}
+.hero-meta span{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+
+/* sequence panel */
+.seq-panel{
+  background:var(--surface); border:1px solid var(--line); border-radius:16px;
+  box-shadow:var(--shadow); padding:22px; overflow:hidden;
+}
+.seq-panel .cap{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px}
+.seq{
+  font-family:var(--font-mono); font-size:13px; line-height:2.05; letter-spacing:.08em;
+  word-break:break-all; margin:0;
+}
+.seq .A{color:var(--base-a)} .seq .C{color:var(--base-c)}
+.seq .G{color:var(--base-g)} .seq .U{color:var(--base-u)}
+.seq .m{background:var(--accent-soft); color:var(--accent); border-radius:3px; padding:1px 2px; font-weight:600}
+.diffusion{width:100%; height:auto; display:block; border-radius:12px; background:var(--paper)}
+.molecule{
+  display:flex; align-items:center; gap:16px; margin-top:18px; padding-top:18px;
+  border-top:1px dashed var(--line); flex-wrap:wrap;
+}
+.molecule svg{width:190px; max-width:100%; height:auto; flex:none}
+.mol-cap{display:flex; flex-direction:column; gap:3px; min-width:0}
+.mol-cap b{font-family:var(--font-display); font-size:16px}
+.mol-cap span{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; color:var(--ink-3)}
+.legend{
+  display:flex; gap:14px; flex-wrap:wrap; margin-top:18px; padding-top:16px;
+  border-top:1px dashed var(--line);
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; color:var(--ink-3);
+}
+.legend i{font-style:normal; font-weight:600}
+
+/* ---------- research ---------- */
+.cards{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:14px;
+  padding:26px 26px 28px; display:flex; flex-direction:column; gap:12px;
+  border-top:3px solid var(--rail,var(--accent));
+}
+.card h3{font-size:21px; letter-spacing:-.015em}
+.card.feature{grid-column:1/-1; background:linear-gradient(135deg,var(--accent-soft),var(--surface) 55%)}
+.card.feature h3{font-size:25px}
+.card.feature ul{columns:2; column-gap:32px}
+@media (max-width:700px){.card.feature ul{columns:1}}
+.card .tag{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--rail,var(--accent)); font-weight:600}
+.card p{color:var(--ink-2); font-size:16px}
+.card ul{margin:4px 0 0; padding-left:18px; color:var(--ink-2); font-size:15.5px}
+.card li{margin-block:3px}
+
+/* ---------- software ---------- */
+.repo-list{display:grid; gap:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--surface)}
+.repo{
+  display:grid; grid-template-columns:200px 1fr auto; gap:20px; align-items:center;
+  padding:20px 24px; border-top:1px solid var(--line-soft);
+}
+.repo:first-child{border-top:0}
+.repo .name{font-family:var(--font-mono); font-weight:600; font-size:15px; color:var(--accent)}
+.repo p{font-size:15.5px; color:var(--ink-2)}
+.repo .links{display:flex; gap:14px; flex-wrap:wrap; margin-top:7px}
+.repo .links a{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  padding-bottom:1px;
+}
+.repo .links a:hover{border-bottom-color:var(--accent)}
+.repo .state{
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); border:1px solid var(--line); border-radius:999px; padding:4px 11px; white-space:nowrap;
+}
+
+/* ---------- news ---------- */
+.news{display:grid; gap:0}
+.item{
+  display:grid; grid-template-columns:170px 1fr; gap:24px;
+  padding-block:24px; border-top:1px solid var(--line-soft);
+}
+.item:first-child{border-top:0; padding-top:0}
+.item .when{display:flex; flex-direction:column; gap:7px; align-items:flex-start}
+.item .when time{font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--ink-3)}
+.kind{
+  font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  font-weight:600; padding:3px 9px; border-radius:4px;
+}
+.k-pub{background:var(--accent-soft); color:var(--accent)}
+.k-team{background:color-mix(in srgb,var(--base-a) 16%,transparent); color:var(--base-a)}
+.k-grant{background:color-mix(in srgb,var(--base-g) 18%,transparent); color:var(--base-g)}
+.k-talk{background:color-mix(in srgb,var(--base-c) 15%,transparent); color:var(--base-c)}
+.k-outreach{background:color-mix(in srgb,var(--base-g) 18%,transparent); color:var(--base-g)}
+.k-train{background:color-mix(in srgb,var(--accent-3) 34%,transparent); color:var(--accent)}
+.item h3{font-size:19px; margin-bottom:6px; letter-spacing:-.01em}
+.item h3 a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.item h3 a:hover{border-bottom-color:var(--accent)}
+.item p{color:var(--ink-2); font-size:16px}
+.item p.quip{
+  margin-top:10px; padding-left:14px; border-left:2px solid var(--accent-3);
+  font-style:italic; color:var(--ink-2); font-size:16px;
+}
+
+/* ---------- team ---------- */
+.team{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+.person{
+  background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:24px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.avatar{
+  width:56px; height:56px; border-radius:12px; display:grid; place-items:center;
+  font-family:var(--font-mono); font-weight:600; font-size:16px; color:#fff;
+  background:linear-gradient(150deg,var(--accent-2),var(--accent));
+}
+.avatar.photo{
+  width:84px; height:84px; object-fit:cover; display:block; padding:0;
+  border:2px solid var(--accent-3); box-shadow:0 6px 18px -10px rgba(196,70,10,.55);
+}
+.person h3{font-size:19px; letter-spacing:-.01em}
+.person .role{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.person p{font-size:15.5px; color:var(--ink-2)}
+.person p a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.person p a:hover{border-bottom-color:var(--accent)}
+.person.collab{border-left:3px solid var(--accent-3)}
+.inst-logo{width:132px; height:auto; display:block; margin-bottom:2px}
+.person.collab .role{color:var(--accent)}
+.person.open{border-style:dashed; background:transparent}
+.person.filled{border-style:dashed}
+.person.filled .avatar{background:none; border:1.5px dashed var(--line); color:var(--ink-3)}
+.person.filled .role{color:var(--base-a)}
+.person.open .avatar{background:none; border:1.5px dashed var(--line); color:var(--ink-3)}
+
+/* ---------- publications ---------- */
+.pubs{display:grid; gap:0}
+.pub{display:grid; grid-template-columns:72px 1fr; gap:22px; padding-block:22px; border-top:1px solid var(--line-soft)}
+.pub:first-child{border-top:0; padding-top:0}
+.pub .yr{font-family:var(--font-mono); font-size:13px; color:var(--ink-3); padding-top:3px}
+.pub h3{font-size:18.5px; margin-bottom:6px; letter-spacing:-.01em}
+.pub .authors{font-size:15.5px; color:var(--ink-2)}
+.pub .venue{font-family:var(--font-mono); font-size:12px; color:var(--ink-3); margin-top:5px}
+.pub .links{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px}
+.pub .links a{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent); padding-bottom:1px;
+}
+.pub .links a:hover{border-bottom-color:var(--accent)}
+.todo{
+  display:inline-block; margin-left:8px; vertical-align:2px;
+  font-family:var(--font-mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--base-u); border:1px solid color-mix(in srgb,var(--base-u) 45%,transparent);
+  border-radius:4px; padding:2px 7px; font-weight:600;
+}
+.todo.prog{
+  color:var(--accent);
+  border-color:color-mix(in srgb,var(--accent) 45%,transparent);
+  background:var(--accent-soft);
+}
+
+/* ---------- join + contact ---------- */
+.split{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,56px); align-items:start}
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:28px; box-shadow:var(--shadow)}
+.panel h3{font-size:20px; margin-bottom:12px}
+.openings{list-style:none; margin:0; padding:0; display:grid; gap:12px}
+.openings li{
+  display:flex; justify-content:space-between; gap:14px; align-items:center;
+  border:1px solid var(--line); border-radius:10px; padding:14px 16px; font-size:16px;
+}
+.openings b{font-family:var(--font-display); font-weight:600}
+.openings .st{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--base-a)}
+.openings li:has(.st-closed){opacity:.6}
+.openings .st-closed{color:var(--ink-3)}
+.openings .st-tbc{color:var(--accent)}
+.addr{display:grid; gap:16px}
+.addr .row{display:grid; grid-template-columns:120px 1fr; gap:14px; align-items:baseline}
+.addr .k{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.addr .v{font-size:16px; color:var(--ink-2)}
+.addr a{color:var(--accent)}
+
+.loop{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--surface);
+}
+.loop .step{padding:26px 26px 28px; border-left:1px solid var(--line-soft); position:relative}
+.loop .step:first-child{border-left:0}
+.loop .step .n{
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); font-weight:600;
+}
+.loop .step h3{font-size:19px; margin:8px 0 8px}
+.loop .step p{font-size:15.5px; color:var(--ink-2)}
+.loop-note{
+  margin-top:18px; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.06em;
+  color:var(--ink-3); display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.loop-note b{color:var(--accent); font-weight:600}
+@media (max-width:760px){
+  .loop{grid-template-columns:1fr}
+  .loop .step{border-left:0; border-top:1px solid var(--line-soft)}
+  .loop .step:first-child{border-top:0}
+}
+.teach{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(24px,4vw,48px); align-items:start}
+.teach .panel ul{list-style:none; margin:0; padding:0; display:grid; gap:12px}
+.teach .panel li{display:flex; gap:12px; align-items:flex-start; font-size:16px; color:var(--ink-2)}
+.teach .panel li::before{
+  content:"→"; color:var(--accent); font-family:var(--font-mono); font-size:14px; line-height:1.5; flex:none;
+}
+@media (max-width:900px){.teach{grid-template-columns:1fr}}
+.sig{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(24px,4vw,48px); align-items:center}
+.sig .panel{display:flex; flex-direction:column; gap:14px}
+.sig-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:6px}
+.play{
+  display:flex; align-items:center; gap:16px; text-decoration:none; color:inherit;
+  border:1px solid var(--line); border-radius:14px; background:var(--surface);
+  padding:20px 22px; box-shadow:var(--shadow);
+}
+.play:hover{border-color:var(--accent-3)}
+.play .glyph{
+  flex:none; width:58px; height:42px; border-radius:11px; background:#cc1f1a;
+  display:grid; place-items:center;
+}
+.play .glyph svg{width:20px; height:20px; display:block}
+.play b{font-family:var(--font-display); font-size:16px; display:block}
+.play span{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3)}
+.club{
+  grid-column:1/-1; margin-top:clamp(20px,3vw,32px); padding-top:clamp(20px,3vw,32px);
+  border-top:1px solid var(--line);
+}
+.club.first{
+  margin-top:0; padding-top:0; border-top:0;
+  margin-bottom:clamp(24px,3.5vw,38px); padding-bottom:clamp(24px,3.5vw,38px);
+  border-bottom:1px solid var(--line);
+}
+.club h3{font-size:clamp(28px,3.6vw,42px); letter-spacing:-.02em; margin:10px 0 14px; line-height:1.08}
+.club.with-logo{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(24px,4vw,44px); align-items:center}
+.club-logo{width:clamp(120px,16vw,168px); height:auto; aspect-ratio:1; border-radius:20px; display:block; margin-inline:auto; box-shadow:var(--shadow)}
+.club-body{min-width:0}
+.club .sig-links{margin-top:18px}
+@media (max-width:620px){
+  .club.with-logo{grid-template-columns:1fr}
+  .club-logo{width:96px; margin-inline:0}
+}
+.club.archive{opacity:.82}
+.club.archive .eyebrow{color:var(--ink-3)}
+.club p a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.club p a:hover{border-bottom-color:var(--accent)}
+.club p{color:var(--ink-2); font-size:16.5px; max-width:70ch}
+@media (max-width:900px){.sig{grid-template-columns:1fr}}
+#join{background:linear-gradient(180deg,var(--accent-soft),transparent 70%)}
+
+.maplink{
+  display:inline-block; margin-left:10px; white-space:nowrap;
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--accent); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent); padding-bottom:1px;
+}
+.maplink:hover{border-bottom-color:var(--accent)}
+/* ---------- affiliations ---------- */
+.affils{padding-block:clamp(36px,4vw,56px)}
+.affils .lead{
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3); text-align:center; margin-bottom:26px;
+}
+.logos{display:flex; gap:18px; flex-wrap:wrap; justify-content:center; align-items:stretch}
+.logo{
+  flex:1 1 240px; max-width:320px; min-height:96px;
+  display:flex; align-items:center; gap:16px;
+  background:var(--surface); border:1px solid var(--line); border-radius:14px;
+  padding:18px 22px; text-decoration:none; color:inherit;
+}
+.logo:hover{border-color:var(--accent-3)}
+.logo .glyph{
+  flex:none; width:52px; height:52px; border-radius:11px; display:grid; place-items:center;
+  font-family:var(--font-display); font-weight:800; font-size:16px; letter-spacing:-.02em;
+  color:#fff; background:var(--gl,var(--accent));
+}
+.logo .glyph.logo-img{
+  background:#fff; object-fit:contain; padding:4px; border:1px solid var(--line-soft);
+}
+.logo .glyph.logo-img.wide{width:104px; height:40px; border-radius:8px; padding:2px 6px}
+.logo .txt{display:flex; flex-direction:column; gap:3px; min-width:0}
+.logo .txt b{font-family:var(--font-display); font-size:15.5px; font-weight:600; line-height:1.25}
+.logo .txt span{font-family:var(--font-mono); font-size:10px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3)}
+
+footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink-3)}
+.foot{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center; font-size:14px}
+.foot .affil{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+
+@media (max-width:900px){
+  .hero-grid,.split{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .team{grid-template-columns:repeat(2,1fr)}
+  .repo{grid-template-columns:1fr; gap:8px}
+
+  /* header collapses into a hamburger menu */
+  .bar{gap:12px; min-height:60px}
+  .brand{margin-right:auto; min-width:0}
+  .bar > .btn{display:none}
+  .burger{display:flex}
+  nav{
+    position:absolute; left:0; right:0; top:100%;
+    flex-direction:column; align-items:stretch; gap:0;
+    background:var(--surface); border-bottom:1px solid var(--line);
+    box-shadow:0 18px 30px -22px rgba(60,26,6,.55);
+    padding:6px 20px 14px;
+  }
+  nav[hidden]{display:none}
+  nav a{
+    padding:13px 2px; border-bottom:1px solid var(--line-soft);
+    font-size:17px; color:var(--ink);
+  }
+  nav a:last-child{border-bottom:0}
+  nav a.nav-cta{display:block; color:var(--accent); font-weight:700}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .team{grid-template-columns:1fr}
+  .item,.pub{grid-template-columns:1fr; gap:10px}
+  .item .when{flex-direction:row; align-items:center; gap:10px}
+  .addr .row{grid-template-columns:1fr; gap:2px}
+}
+</style>
+</head>
+<body>
+
+
+
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">5′</span>
+      <span>
+        <b>Magnus Lab</b>
+        <span>RNA Design &amp; Therapeutics</span>
+      </span>
+    </a>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mainnav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainnav" aria-label="Main">
+      <a href="#research">Research</a>
+      <a href="#news">News</a>
+      <a href="#team">Team</a>
+      <a href="#collaborators">Collaborators</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#sig">Community</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#join">Join us</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#join">Join us</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><span class="dot"></span> University of Warsaw · CeNT</span>
+        <h1>Understand RNA <em>shapes</em> to design RNA therapeutics.</h1>
+        <p class="lede">
+          RNA does its work in three dimensions, so we start from the shape. The Laboratory of
+          RNA Design and Therapeutics combines deep learning and experimental methods to predict
+          those shapes and to design aptamers, therapeutic mRNA and chemically modified RNA.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#research">Explore research →</a>
+          <a class="btn btn-ghost" href="#publications">Publications</a>
+        </div>
+        <div class="hero-meta">
+          <div><b>2026</b><span>Lab founded</span></div>
+          <div><b>SONATA BIS 15</b><span>NCN funding · 2026–2031</span></div>
+        </div>
+      </div>
+
+      <aside class="seq-panel" aria-label="Ligand-conditioned diffusion of an RNA pocket around psilocybin">
+        <div class="cap">
+          <span class="eyebrow">Ligand-conditioned diffusion</span>
+          <span class="eyebrow">t : T → 0</span>
+        </div>
+
+        <img class="diffusion" src="assets/rna-diffusion.gif"
+             alt="Animation: a cloud of random atoms denoises into an RNA chain wrapped around psilocybin"
+             width="440" height="440">
+
+        <div class="legend">
+          <span>Prototype rendering of a ligand-bound RNA model emerging from a diffusion process. Fold after PDB 1DDY; psilocybin in the pocket.</span>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Research areas</span>
+        <h2>From sequence to structure to therapy</h2>
+        <p>RNA does its work in three dimensions. We predict that geometry with machine learning,
+           then use it to design molecules that bind, fold and function the way we intend.</p>
+      </div>
+      <div class="cards">
+        <article class="card" style="--rail:var(--accent)">
+          <span class="tag">Deep learning</span>
+          <h3>RNA 3D structure prediction</h3>
+          <p>End-to-end models that go straight from sequence and alignment to atomic coordinates,
+             built on the OpenFold architecture and trained on curated structural data.</p>
+          <ul>
+            <li>OpenRNAFold — end-to-end RNA folding</li>
+            <li>Covariation and alignment signal as model input</li>
+            <li>Benchmarking against RNA-Puzzles and CASP targets</li>
+          </ul>
+        </article>
+
+        <article class="card" style="--rail:var(--base-a)">
+          <span class="tag">Ligands &amp; aptamers</span>
+          <h3>RNA–small molecule interactions</h3>
+          <p>Which pockets does a folded RNA actually present, and what binds them? We combine
+             structure prediction with selection experiments to make binding predictable.</p>
+          <ul>
+            <li>SELEX library design and diversity metrics</li>
+            <li>SmartLib — structure-aware library generation</li>
+            <li>Aptamer-based electrochemical biosensors</li>
+          </ul>
+        </article>
+
+        <article class="card" style="--rail:var(--base-u)">
+          <span class="tag">Therapeutics</span>
+          <h3>Modified RNA &amp; mRNA design</h3>
+          <p>Chemical modification changes both folding and function. We model pseudouridine (Ψ)
+             thermodynamics and apply it to translation control elements.</p>
+          <ul>
+            <li>Nearest-neighbour parameters for Ψ</li>
+            <li>SHAPE-MaP validation of predicted structures</li>
+            <li>IRES design with Ψ substitution (EMCV, CVB3)</li>
+          </ul>
+        </article>
+
+        <article class="card" style="--rail:var(--base-g)">
+          <span class="tag">Data</span>
+          <h3>Datasets and benchmarks</h3>
+          <p>Models are only as good as the data behind them. We curate structural RNA data and
+             keep train/test splits honest, family by family.</p>
+          <ul>
+            <li>RNA3DB — non-redundant structural splits</li>
+            <li>Manual QC of Rfam family ↔ PDB mappings</li>
+            <li>Open pipelines, reproducible releases</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="loop">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How we work</span>
+        <h2>Predictions are not results until the bench says so</h2>
+        <p>Computation and experiment are one cycle here, not two groups. A model proposes a
+           structure or a binder, the lab measures whether it behaves as predicted, and the
+           measurement goes back into the training data.</p>
+      </div>
+      <div class="loop">
+        <div class="step">
+          <span class="n">Step 1 · predict</span>
+          <h3>The model proposes</h3>
+          <p>Structure prediction and ligand-conditioned generation produce candidate folds,
+             aptamer sequences and modified constructs, ranked by the model's own confidence.</p>
+        </div>
+        <div class="step">
+          <span class="n">Step 2 · test</span>
+          <h3>The bench decides</h3>
+          <p>Candidates go into SELEX, binding assays and SHAPE-MaP probing. Predicted structure
+             and predicted affinity are compared against what the molecule actually does.</p>
+        </div>
+        <div class="step">
+          <span class="n">Step 3 · feed back</span>
+          <h3>The data returns to the model</h3>
+          <p>Hits and failures alike become training and benchmark data, so the next round of
+             predictions is wrong in fewer places than the last.</p>
+        </div>
+      </div>
+      <p class="loop-note"><b>predict → test → feed back → predict</b> · every dataset we generate is released with the model that learned from it</p>
+    </div>
+  </section>
+
+  <section id="software">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Software</span>
+        <h2>Tools we build and maintain</h2>
+        <p>Everything the lab produces is released openly, with permissive licensing,
+           so results can be reproduced and reused.</p>
+      </div>
+      <div class="repo-list">
+        <div class="repo">
+          <span class="name">OpenRNAFold</span>
+          <p>End-to-end deep learning approach for RNA 3D structure prediction, built on OpenFold. Apache-2.0.</p>
+          <span class="state">Active</span>
+        </div>
+        <div class="repo">
+          <span class="name">RNAhub</span>
+          <div>
+            <p>Automated web pipeline that searches for RNA homologs, aligns them and assesses the
+               secondary structure of the resulting alignment. Published in Nucleic Acids Research (2025).</p>
+            <div class="links">
+              <a href="https://rnahub.org">rnahub.org</a>
+              <a href="https://github.com/mmagnus/rnahub">GitHub</a>
+              <a href="https://doi.org/10.1093/nar/gkaf342">Paper · NAR</a>
+            </div>
+          </div>
+          <span class="state">Web server</span>
+        </div>
+        <div class="repo">
+          <span class="name">RNA3DB</span>
+          <p>Structurally non-redundant dataset of RNA structures with sequence-identity-aware splits for training and evaluation.</p>
+          <span class="state">Active</span>
+        </div>
+        <div class="repo">
+          <span class="name">rna-tools</span>
+          <div>
+            <p>Toolbox for handling RNA 3D structures: format conversion, renumbering, cleaning, batch analysis.</p>
+            <div class="links">
+              <a rel="noopener" target="_blank" href="https://rna-tools.online">rna-tools.online</a>
+              <a rel="noopener" target="_blank" href="https://github.com/mmagnus/rna-tools">GitHub</a>
+              <a rel="noopener" target="_blank" href="https://rna-tools.readthedocs.io">Docs</a>
+            </div>
+          </div>
+          <span class="state">Maintained</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Latest updates</span>
+        <h2>News from the lab</h2>
+        <p>New results, people joining, talks and preprints.</p>
+      </div>
+      <div class="news">
+        <article class="item">
+          <div class="when"><span class="kind k-train">Training</span><time datetime="2026-09">September 2026</time></div>
+          <div>
+            <h3>SELEX training at the Center of Aptamer Research and Development, Bonn</h3>
+            <p>Hands-on SELEX training at CARD, hosted in Günter Mayer&#8217;s group at the LIMES Institute,
+               University of Bonn. CARD runs an automated platform for generating customized aptamers and
+               makes it available to academic and industrial researchers as a non-profit service, together
+               with Marcus Menger&#8217;s Functional Nucleic Acid &#8211; Aptamer laboratory at the Fraunhofer
+               Institute for Cell Therapy and Immunology in Potsdam. The visit brings the experimental side
+               of aptamer selection into the lab, next to the models we build for it.</p>
+            <p class="quip">&#8220;Usually once you become a PI, you stop pipetting. I&#8217;m doing the
+               reverse PI-ing!&#8221; &#8212; Magnus, at the bench in Bonn.</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="when"><span class="kind k-talk">Talk</span><time datetime="2026-09-18">September 2026</time></div>
+          <div>
+            <h3>Invited lecture in Bonn — “The AlphaFold for RNA”</h3>
+            <p>Hybrid invited lecture at the Institute of Structural Biology, University Hospital Bonn,
+               on 18 September 2026. Hosted by Radosław Nowak.</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="when"><span class="kind k-team">Team</span><time datetime="2026-09">September 2026</time></div>
+          <div>
+            <h3>Jadwiga Meissner joins the lab as experimental postdoc</h3>
+            <p>Jadwiga starts this month, taking on in vitro selection of RNA aptamers
+               and testing computationally designed binders at the bench — the step that closes the
+               loop between predicted structures and measured affinity. Funded by the NCN
+               SONATA BIS-15 grant. Welcome!</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="when"><span class="kind k-outreach">Outreach</span><time datetime="2026-09">September 2026</time></div>
+          <div>
+            <h3>Guests at the Collegium Invisibile Summer School in Ciążeń</h3>
+            <p>Together with Juliusz and Grzegorz Łach we spent a day with the seventeen
+               participants of the Collegium Invisibile Summer School, run with Fundusz Zdolni
+               (formerly the Polish Children's Fund) at the rectors' palace in Ciążeń. The students
+               are sixteen to eighteen years old and heading in every direction — medicine,
+               engineering, linguistics — so we talked about what computational RNA biology
+               actually looks like from the inside.</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="when"><span class="kind k-talk">Talk</span><time datetime="2026-06">June 2026</time></div>
+          <div>
+            <h3>OpenRNAFold presented at <a rel="noopener" target="_blank" href="https://www.ptbi.org.pl/website/conferences/bit_26/">BIT26</a> in Toruń</h3>
+            <p>“OpenRNAFold: an end-to-end approach for RNA 3D structure prediction” —
+               talk given at the BIT26 conference, 18–20 June 2026.</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="when"><span class="kind k-talk">Talk</span><time datetime="2026-06-10">June 2026</time></div>
+          <div>
+            <h3>OpenRNAFold at the <a rel="noopener" target="_blank" href="https://bioputer.mimuw.edu.pl/seminars/bob/">BOB seminar</a>, University of Warsaw</h3>
+            <p>Marcin gave the last Computational Biology and Bioinformatics seminar before the
+               summer break, on 10 June in room 3250 at Banacha 2 — an end-to-end, AlphaFold-style
+               approach to RNA 3D structure prediction, built on carefully curated training data
+               (RNA3DB) and high-quality alignments (RNAhub) to avoid the inflated accuracy that
+               comes from overlap between training and test sets. Hosted by Aleksander Jankowski
+               on behalf of the BOB organisers.</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="when"><span class="kind k-team">Lab</span><time datetime="2026-06">June 2026</time></div>
+          <div>
+            <h3>The lab opens at CeNT, University of Warsaw</h3>
+            <p>The Laboratory of RNA Design and Therapeutics starts at the Centre of New Technologies,
+               following a postdoc in Elena Rivas’s group at Harvard.</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="when"><span class="kind k-grant">Grant</span><time datetime="2026-03">March 2026</time></div>
+          <div>
+            <h3>NCN SONATA BIS-15 funding awarded</h3>
+            <p>Five-year funding to build the group around deep learning for RNA structure
+               and RNA–small molecule interactions.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">People</span>
+        <h2>Meet the team</h2>
+        <p>A group of computational and experimental RNA scientists — and, right now,
+           a few desks still waiting for the right people.</p>
+      </div>
+      <div class="team">
+        <article class="person">
+          <img class="avatar photo" src="assets/marcin-magnus.jpg" alt="Marcin Magnus" width="360" height="360">
+          <h3>Marcin Magnus</h3>
+          <span class="role">Principal Investigator</span>
+          <p>Computational RNA biologist. PhD with Janusz Bujnicki at IIMCB Warsaw, experimental
+             training with Magda Konarska, an internship with Rhiju Das at Stanford, and a postdoc
+             with Elena Rivas at Harvard. Works on RNA 3D structure prediction, RNA datasets and
+             open-source tooling for structural RNA biology.</p>
+        </article>
+        <article class="person">
+          <img class="avatar photo" src="assets/jadwiga-meissner.jpg" alt="Experimental postdoc" width="84" height="84">
+          <h3>Jadwiga Meissner</h3>
+          <span class="role">Postdoc &#183; wet lab &#183; SELEX</span>
+          <p>Runs in vitro selection of RNA aptamers and tests computationally
+             designed binders at the bench, closing the loop between predicted structures and
+             measured affinity. Funded by the NCN SONATA BIS-15 grant.</p>
+        </article>
+        <article class="person open">
+          <div class="avatar" aria-hidden="true">+</div>
+          <h3>Postdoc — Structural Diffusion Models<span class="todo prog">to be opened 2026</span></h3>
+          <span class="role">Open · computational</span>
+          <p>Generative models that build RNA structure: ligand-conditioned diffusion, denoising
+             of backbones and bases, and the evaluation and data pipelines that keep the
+             benchmarks honest. Funded by the NCN SONATA BIS-15 grant; the call is to be opened in 2026.</p>
+        </article>
+        <article class="person open">
+          <div class="avatar" aria-hidden="true">+</div>
+          <h3>Postdoc — RNA Language Models<span class="todo prog">to be confirmed · 2027</span></h3>
+          <span class="role">Open · computational</span>
+          <p>A new position for someone with a language-model background. RNA sequence,
+             alignments and structure all lend themselves to LLM-style architectures, and this
+             project is about building and evaluating them for RNA design and structure
+             prediction.</p>
+        </article>
+        <article class="person open">
+          <div class="avatar" aria-hidden="true">+</div>
+          <h3>PhD Student</h3>
+          <span class="role">Open · computational</span>
+          <p>A four-year computational doctoral project on RNA design: generative and
+             language-model approaches to ligand-binding RNA, benchmarked against the structures
+             and selection data the lab produces. Funded by the NCN SONATA BIS-15 grant,
+             through the UW doctoral school.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="collaborators">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Collaborators</span>
+        <h2>Who we work with</h2>
+        <p>The lab's methods are built and tested together with groups in comparative RNA genomics
+           and sequence analysis.</p>
+      </div>
+      <div class="team">
+        <article class="person collab">
+          <img class="inst-logo" src="assets/logo-harvard.png" alt="Harvard University" width="320" height="81">
+          <span class="role">Harvard University</span>
+          <h3>Elena Rivas</h3>
+          <p>Comparative RNA genomics and covariation analysis. Joint work on OpenRNAFold and on
+             evidence for conserved RNA structure in alignments, continuing from Marcin's postdoc
+             in the Rivas lab.</p>
+        </article>
+        <article class="person collab">
+          <img class="inst-logo" src="assets/logo-uwa.png" alt="University of Western Australia" width="320" height="106">
+          <span class="role">University of Western Australia</span>
+          <h3>Marcell Szikszai</h3>
+          <p>First author of RNA3DB and the driving force behind its structurally non-redundant
+             splits. Joint work on dataset curation and on benchmarks that keep RNA structure
+             prediction honest.</p>
+        </article>
+        <!-- hidden for now
+        <article class="person collab">
+          <span class="role">LIMES Institute, University of Bonn</span>
+          <h3>Günter Mayer</h3>
+          <p>Chemical biology and aptamers. His group develops aptamer technology as a source of
+             molecular tools for probing biological systems with precision — the experimental
+             counterpart to the aptamers we design computationally.</p>
+        </article>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Selected publications</span>
+        <h2>Recent work<span class="todo">to complete</span></h2>
+        <p>Replace the entries below with your selected papers — title, author list, journal and DOI.</p>
+      </div>
+      <div class="pubs">
+        <article class="pub">
+          <span class="yr">2026</span>
+          <div>
+            <h3>OpenRNAFold: an end-to-end approach for RNA 3D structure prediction<span class="todo prog">in progress</span></h3>
+            <p class="authors">Author list to be completed</p>
+            <p class="venue">Manuscript in preparation</p>
+          </div>
+        </article>
+        <article class="pub">
+          <span class="yr">2025</span>
+          <div>
+            <h3>RNA-Puzzles Round V: blind predictions of 23 RNA structures</h3>
+            <p class="authors">Bu, F.; Adam, Y.; Adamiak, R. W.; Antczak, M.; de Aquino, B. R. H.; Badepally, N. G.; … Magnus, M.; … (RNA-Puzzles consortium)</p>
+            <p class="venue">Nature Methods 22(2), 399–411 · DOI: 10.1038/s41592-024-02543-9</p>
+            <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1038/s41592-024-02543-9">Paper · Nature Methods</a></div>
+          </div>
+        </article>
+        <article class="pub">
+          <span class="yr">2025</span>
+          <div>
+            <h3>RNAhub — an automated pipeline to search and align RNA homologs with secondary structure assessment</h3>
+            <p class="authors">Magnus, M.; Gao, W.; Dutta, N.; Vicens, Q.; Rivas, E.</p>
+            <p class="venue">Nucleic Acids Research 53(W1), W496–W502 · DOI: 10.1093/nar/gkaf342</p>
+            <div class="links"><a rel="noopener" target="_blank" href="https://rnahub.org">Web server · rnahub.org</a></div>
+          </div>
+        </article>
+        <article class="pub">
+          <span class="yr">2024</span>
+          <div>
+            <h3>RNA3DB: a structurally-dissimilar dataset split for training and benchmarking deep learning models for RNA structure prediction</h3>
+            <p class="authors">Szikszai, M.; Magnus, M.; Sanghi, S.; Kadyan, S.; Bouatta, N.; Rivas, E.</p>
+            <p class="venue">Journal of Molecular Biology 436(17), 168552 · DOI: 10.1016/j.jmb.2024.168552</p>
+            <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1016/j.jmb.2024.168552">Paper · JMB</a><a rel="noopener" target="_blank" href="https://github.com/marcellszi/rna3db">GitHub</a></div>
+          </div>
+        </article>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-ghost" rel="noopener" target="_blank"
+           href="https://pubmed.ncbi.nlm.nih.gov/?term=Magnus+M&amp;cauthor_id=40304050">Full list on PubMed</a>
+        <a class="btn btn-ghost" rel="noopener" target="_blank"
+           href="https://scholar.google.pl/citations?user=O2gLO2EAAAAJ&amp;hl=en">Google Scholar</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <div class="wrap teach">
+      <div>
+        <div class="sec-head">
+          <span class="eyebrow">Teaching</span>
+          <h2>Biological Therapeutics — a new MSc programme</h2>
+          <p>A master's programme built jointly by the University of Warsaw and the International
+             Institute of Molecular and Cell Biology in Warsaw, for students heading into modern
+             biological and biomedical science. The curriculum runs from the design of nucleic
+             acid-based drugs and their molecular mechanisms through delivery in lipid nanoparticles
+             to preclinical studies and commercialisation — close enough to what this lab does that
+             students from the programme are welcome to ask about projects with us.</p>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-primary" rel="noopener" target="_blank" href="https://irk.uw.edu.pl/en-gb/offer/registration-select/?next=/pl/offer/PELNE2025/programme/S2-BIT/?from=field:P_BIT">Apply →</a>
+          <a class="btn btn-ghost" rel="noopener" target="_blank" href="https://medycyna.uw.edu.pl/wp-content/uploads/sites/138/2026/01/Medyczny-1h.mp4">Watch the video</a>
+          <a class="btn btn-ghost" rel="noopener" target="_blank" href="https://medycyna.uw.edu.pl/rekrutacja-na-studia-biological-therapeutics-na-wydziale-medycznym-uw/">Read more</a>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Worth knowing</h3>
+        <ul>
+          <li>Tuition fees for the first edition of the programme have been waived.</li>
+          <li>Admission is by a qualifying interview conducted entirely in English.</li>
+          <li>A second round of the selection process is planned for September.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="sig">
+    <div class="wrap sig">
+      <div class="club first with-logo">
+        <div class="club-body">
+          <span class="eyebrow">Our initiative · Warsaw · 2016 –</span>
+          <h3>RNA Club Warsaw</h3>
+          <p>Ten years of RNA Club. It started in October 2016 as an RNA-focused spin-off of
+             <a rel="noopener" target="_blank" href="https://doscience.iimcb.gov.pl">Do Science!</a>,
+             with the support of prof. Jacek Kuźnicki at IIMCB, and soon afterwards secured RNA Salon
+             funding from the RNA Society. Since then it has held keynote evenings with Rhiju Das,
+             Eric Westhof and Matthew Disney, run joint workshops with NGSchool, and hosted a long
+             series of members' meetings, mostly at IIMCB — a local meeting for everyone in Warsaw who
+             works on RNA, across institutes, from computation to experimental work.</p>
+          <div class="sig-links">
+            <a class="btn btn-primary" rel="noopener" target="_blank" href="https://rna-club-warsaw.org">rna-club-warsaw.org &#8599;</a>
+            <a class="btn btn-ghost" href="#contact">Contact us to join</a>
+          </div>
+        </div>
+        <img class="club-logo" src="assets/logo-rna-club.png" alt="" width="144" height="144">
+      </div>
+      <div>
+        <div class="sec-head">
+          <span class="eyebrow">Ongoing · worldwide</span>
+          <h2>CASP RNA SIG</h2>
+          <p>A Special Interest Group on nucleic acid 3D structure prediction — experimental data,
+             training and test sets, RNA alignments, ligand interactions, conformational ensembles.
+             The community meets online every two weeks, and the talks are recorded and published openly.
+             How the CASP Special Interest Groups work, this one included, is described in a community
+             paper we co-authored in <em>Proteins</em> (2025).</p>
+        </div>
+        <div class="sig-links">
+          <a class="btn btn-ghost" rel="noopener" target="_blank" href="https://doi.org/10.1002/prot.26833">Read the white paper</a>
+          <a class="btn btn-ghost" rel="noopener" target="_blank" href="https://tinyurl.com/rna-sig-schedule">Upcoming schedule</a>
+          <a class="btn btn-ghost" rel="noopener" target="_blank" href="mailto:casp.rna.sig@gmail.com">Suggest a speaker</a>
+        </div>
+      </div>
+      <a class="play" rel="noopener" target="_blank" href="https://www.youtube.com/@CASPRNASIG">
+        <span class="glyph" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"></path></svg>
+        </span>
+        <span class="txt">
+          <b>Watch past talks on YouTube</b>
+          <span>youtube.com/@CASPRNASIG</span>
+        </span>
+      </a>
+      <div class="club archive with-logo">
+        <div class="club-body">
+        <span class="eyebrow">Archive · 2013–2022</span>
+        <h3>Do Science!</h3>
+        <p>A science discussion club in Warsaw — lectures and informal meetings where researchers
+           talked about their work and about science itself. It began in April 2013 with a meeting
+           with Robert Huber, took its name that October, and over nine years hosted three Nobel
+           laureates (Robert Huber, Brian Kobilka, Venki Ramakrishnan) alongside many other speakers.
+           Institute-independent and open to everyone, it was run by PhD students and postdocs from
+           IIMCB and Biocentrum Ochota, with support from EMBO, IIMCB and Biocentrum Ochota, and it
+           also produced SciEvents, a shared calendar of bioscience events in Warsaw.
+           <a rel="noopener" target="_blank" href="https://doscience.iimcb.gov.pl">doscience.iimcb.gov.pl</a></p>
+        </div>
+        <img class="club-logo" src="assets/logo-do-science.jpg" alt="Do Science!" width="160" height="160">
+      </div>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="wrap split">
+      <div>
+        <div class="sec-head">
+          <span class="eyebrow">Join the team</span>
+          <h2>Work with us</h2>
+          <p>We look for people at every level — bachelor, master, PhD, postdoc — who are curious
+             about RNA structure and comfortable moving between code and experimental work.
+             Experience in machine learning, structural biology or experimental techniques is all
+             welcome.</p>
+        </div>
+        <a class="btn btn-primary" href="#contact">Get in touch →</a>
+      </div>
+      <div class="panel">
+        <h3>Current openings</h3>
+        <ul class="openings">
+          <li><span><b>Postdoc — structural diffusion models</b><br><span class="eyebrow">NCN SONATA BIS-15 · generative structure</span></span><span class="st st-tbc">Opening 2026</span></li>
+          <li><span><b>Postdoc — SELEX, wet lab</b><br><span class="eyebrow">NCN SONATA BIS-15</span></span><span class="st st-closed">Filled</span></li>
+          <li><span><b>Postdoc — RNA language models</b><br><span class="eyebrow">Computational</span></span><span class="st st-tbc">TBC 2027</span></li>
+          <li><span><b>PhD student</b><br><span class="eyebrow">Computational · NCN SONATA BIS-15</span></span><span class="st">Open</span></li>
+          <li><span><b>Bachelor &amp; master students</b><br><span class="eyebrow">Year-round</span></span><span class="st">Open</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div>
+        <div class="sec-head">
+          <span class="eyebrow">Location</span>
+          <h2>Centre of New Technologies</h2>
+          <p>University of Warsaw, Ochota campus.</p>
+        </div>
+        <div class="addr">
+          <div class="row"><span class="k">Institute</span><span class="v">Centre of New Technologies (CeNT), University of Warsaw</span></div>
+          <div class="row"><span class="k">Lab</span><span class="v">Laboratory of RNA Design and Therapeutics</span></div>
+          <div class="row"><span class="k">Address</span><span class="v">ul. Banacha 2c, 02-097 Warszawa, Poland <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Centrum%20Nowych%20Technologii%20UW%2C%20Banacha%202c%2C%20Warszawa" target="_blank" rel="noopener">Open in Google Maps &#8599;</a></span></div>
+          <div class="row"><span class="k">Email</span><span class="v"><a href="#">m.magnus (at) cent.uw.edu.pl</a></span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section class="affils">
+    <div class="wrap">
+      <p class="lead">Host institutions &amp; funding</p>
+      <div class="logos">
+        <a class="logo" href="https://www.uw.edu.pl" style="--gl:#00204e">
+          <img class="glyph logo-img" src="assets/logo-uw.png" alt="" width="176" height="176">
+          <span class="txt">
+            <b>University of Warsaw</b>
+            <span>Uniwersytet Warszawski</span>
+          </span>
+        </a>
+        <a class="logo" href="https://cent.uw.edu.pl" style="--gl:var(--accent)">
+          <img class="glyph logo-img wide" src="assets/logo-cent.png" alt="" width="260" height="81">
+          <span class="txt">
+            <b>Centre of New Technologies</b>
+            <span>Centrum Nowych Technologii UW</span>
+          </span>
+        </a>
+        <a class="logo" href="https://www.ncn.gov.pl" style="--gl:#0b6b3a">
+          <img class="glyph logo-img" src="assets/logo-ncn.png" alt="" width="160" height="160">
+          <span class="txt">
+            <b>National Science Centre</b>
+            <span>Narodowe Centrum Nauki · SONATA BIS-15</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Magnus Lab · Laboratory of RNA Design and Therapeutics</span>
+    <span class="affil">CeNT · University of Warsaw</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var burger = document.getElementById('burger');
+  var nav = document.getElementById('mainnav');
+  var mq = window.matchMedia('(max-width: 900px)');
+
+  function close() {
+    nav.hidden = true;
+    burger.setAttribute('aria-expanded', 'false');
+  }
+  function sync() {
+    if (mq.matches) { close(); } else { nav.hidden = false; burger.setAttribute('aria-expanded', 'false'); }
+  }
+
+  burger.addEventListener('click', function () {
+    var open = burger.getAttribute('aria-expanded') === 'true';
+    nav.hidden = open;
+    burger.setAttribute('aria-expanded', String(!open));
+  });
+  nav.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A' && mq.matches) { close(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mq.matches) { close(); burger.focus(); }
+  });
+  mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+  sync();
+})();
+</script>
+
+</body>
+</html>
