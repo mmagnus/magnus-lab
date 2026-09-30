@@ -179,8 +179,7 @@ nav a.nav-cta{display:none}
 .card h3{font-size:21px; letter-spacing:-.015em}
 .card.feature{grid-column:1/-1; background:linear-gradient(135deg,var(--accent-soft),var(--surface) 55%)}
 .card.feature h3{font-size:25px}
-.card.feature ul{columns:2; column-gap:32px}
-@media (max-width:700px){.card.feature ul{columns:1}}
+.card.feature ul{columns:1; max-width:46ch}
 .card .tag{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--rail,var(--accent)); font-weight:600}
 .card p{color:var(--ink-2); font-size:16px}
 .card ul{margin:4px 0 0; padding-left:18px; color:var(--ink-2); font-size:15.5px}
@@ -189,7 +188,7 @@ nav a.nav-cta{display:none}
 /* ---------- software ---------- */
 .repo-list{display:grid; gap:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--surface)}
 .repo{
-  display:grid; grid-template-columns:200px 1fr auto; gap:20px; align-items:center;
+  display:grid; grid-template-columns:200px 1fr; gap:20px; align-items:center;
   padding:20px 24px; border-top:1px solid var(--line-soft);
 }
 .repo:first-child{border-top:0}
@@ -259,6 +258,7 @@ nav a.nav-cta{display:none}
 .inst-logo{width:132px; height:auto; display:block; margin-bottom:2px}
 .person.collab .role{color:var(--accent)}
 .person.open{border-style:dashed; background:transparent}
+.person.open.recruiting{background:var(--surface)}
 .person.filled{border-style:dashed}
 .person.filled .avatar{background:none; border:1.5px dashed var(--line); color:var(--ink-3)}
 .person.filled .role{color:var(--base-a)}
@@ -535,6 +535,17 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
            then use it to design molecules that bind, fold and function the way we intend.</p>
       </div>
       <div class="cards">
+        <article class="card" style="--rail:var(--base-a)">
+          <span class="tag">Ligands &amp; aptamers</span>
+          <h3>RNA–small molecule interactions</h3>
+          <p>Which pockets does a folded RNA actually present, and what binds them? We combine
+             structure prediction with selection experiments to make binding predictable.</p>
+          <ul>
+            <li>SELEX library design and diversity metrics</li>
+            <li>SmartLib — structure-aware library generation</li>
+            <li>Aptamer-based electrochemical biosensors</li>
+          </ul>
+        </article>
         <article class="card" style="--rail:var(--accent)">
           <span class="tag">Deep learning</span>
           <h3>RNA 3D structure prediction</h3>
@@ -547,21 +558,10 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
           </ul>
         </article>
 
-        <article class="card" style="--rail:var(--base-a)">
-          <span class="tag">Ligands &amp; aptamers</span>
-          <h3>RNA–small molecule interactions</h3>
-          <p>Which pockets does a folded RNA actually present, and what binds them? We combine
-             structure prediction with selection experiments to make binding predictable.</p>
-          <ul>
-            <li>SELEX library design and diversity metrics</li>
-            <li>SmartLib — structure-aware library generation</li>
-            <li>Aptamer-based electrochemical biosensors</li>
-          </ul>
-        </article>
 
         <article class="card" style="--rail:var(--base-u)">
-          <span class="tag">Therapeutics</span>
-          <h3>Modified RNA &amp; mRNA design</h3>
+          <span class="tag">Therapeutics &#183; thermodynamic models</span>
+          <h3>Chemically modified RNA</h3>
           <p>Chemical modification changes both folding and function. We model pseudouridine (Ψ)
              thermodynamics and apply it to translation control elements.</p>
           <ul>
@@ -570,18 +570,19 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
             <li>IRES design with Ψ substitution (EMCV, CVB3)</li>
           </ul>
         </article>
-
-        <article class="card" style="--rail:var(--base-g)">
-          <span class="tag">Data</span>
-          <h3>Datasets and benchmarks</h3>
-          <p>Models are only as good as the data behind them. We curate structural RNA data and
-             keep train/test splits honest, family by family.</p>
+        <article class="card" style="--rail:var(--base-c)">
+          <span class="tag">Therapeutics &#183; language models</span>
+          <h3>mRNA design with language models</h3>
+          <p>Generative sequence models for therapeutic mRNA — UTRs, coding sequences and their
+             structure — in the spirit of tools such as GEMORNA, trained and validated on our own
+             experimental data.</p>
           <ul>
-            <li>RNA3DB — non-redundant structural splits</li>
-            <li>Manual QC of Rfam family ↔ PDB mappings</li>
-            <li>Open pipelines, reproducible releases</li>
+            <li>Sequence models for UTR and CDS design</li>
+            <li>Structure-aware objectives and decoding</li>
+            <li>Evaluation against expression and stability measured in the lab</li>
           </ul>
         </article>
+
       </div>
     </div>
   </section>
@@ -631,7 +632,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
         <div class="repo">
           <span class="name">OpenRNAFold</span>
           <p>End-to-end deep learning approach for RNA 3D structure prediction, built on OpenFold. Apache-2.0.</p>
-          <span class="state">Active</span>
         </div>
         <div class="repo">
           <span class="name">RNAhub</span>
@@ -644,12 +644,16 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
               <a href="https://doi.org/10.1093/nar/gkaf342">Paper · NAR</a>
             </div>
           </div>
-          <span class="state">Web server</span>
         </div>
         <div class="repo">
           <span class="name">RNA3DB</span>
-          <p>Structurally non-redundant dataset of RNA structures with sequence-identity-aware splits for training and evaluation.</p>
-          <span class="state">Active</span>
+          <div>
+            <p>Structurally non-redundant dataset of RNA structures with sequence-identity-aware splits for training and evaluation.</p>
+            <div class="links">
+              <a rel="noopener" target="_blank" href="https://github.com/marcellszi/rna3db">GitHub</a>
+              <a rel="noopener" target="_blank" href="https://doi.org/10.1016/j.jmb.2024.168552">Paper &#183; JMB</a>
+            </div>
+          </div>
         </div>
         <div class="repo">
           <span class="name">rna-tools</span>
@@ -661,7 +665,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
               <a rel="noopener" target="_blank" href="https://rna-tools.readthedocs.io">Docs</a>
             </div>
           </div>
-          <span class="state">Active</span>
         </div>
       </div>
     </div>
@@ -779,6 +782,7 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
            a few desks still waiting for the right people.</p>
       </div>
       <div class="team">
+      
         <article class="person">
           <img class="avatar photo" src="assets/marcin-magnus.jpg" alt="Marcin Magnus" width="360" height="360">
           <h3>Marcin Magnus</h3>
@@ -795,6 +799,15 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
           <p>Runs in vitro selection of RNA aptamers and tests computationally
              designed binders at the bench, closing the loop between predicted structures and
              measured affinity. Funded by the NCN SONATA BIS-15 grant.</p>
+        </article>
+        <article class="person open recruiting">
+          <div class="avatar" aria-hidden="true">+</div>
+          <h3>PhD Student<span class="todo prog">recruitment in progress</span></h3>
+          <span class="role">Open · computational</span>
+          <p>A four-year computational doctoral project on RNA design: generative and
+             language-model approaches to ligand-binding RNA, benchmarked against the structures
+             and selection data the lab produces. Funded by the NCN SONATA BIS-15 grant,
+             through the UW doctoral school.</p>
         </article>
         <article class="person open">
           <div class="avatar" aria-hidden="true">+</div>
@@ -813,16 +826,7 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
              project is about building and evaluating them for RNA design and structure
              prediction.</p>
         </article>
-        <article class="person open">
-          <div class="avatar" aria-hidden="true">+</div>
-          <h3>PhD Student</h3>
-          <span class="role">Open · computational</span>
-          <p>A four-year computational doctoral project on RNA design: generative and
-             language-model approaches to ligand-binding RNA, benchmarked against the structures
-             and selection data the lab produces. Funded by the NCN SONATA BIS-15 grant,
-             through the UW doctoral school.</p>
-        </article>
-      </div>
+</div>
     </div>
   </section>
 
@@ -884,7 +888,7 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
           <span class="yr">2025</span>
           <div>
             <h3>RNA-Puzzles Round V: blind predictions of 23 RNA structures</h3>
-            <p class="authors">Bu, F.; Adam, Y.; Adamiak, R. W.; Antczak, M.; de Aquino, B. R. H.; Badepally, N. G.; … Magnus, M.; … (RNA-Puzzles consortium)</p>
+            <p class="authors">Bu, F.; …; Magnus, M.; …; Westhof, E.; Miao, Z. (RNA-Puzzles consortium)</p>
             <p class="venue">Nature Methods 22(2), 399–411 · DOI: 10.1038/s41592-024-02543-9</p>
             <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1038/s41592-024-02543-9">Paper · Nature Methods</a></div>
           </div>
