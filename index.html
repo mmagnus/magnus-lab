@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Laboratory of RNA Design and Therapeutics, Centre of New Technologies, University of Warsaw. Deep learning for RNA 3D structure and the design of aptamers, therapeutic mRNA and modified RNA.">
 <title>Magnus Lab — RNA Design &amp; Therapeutics</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -70,10 +71,8 @@ header::before{
 .bar{position:relative; display:flex; align-items:center; gap:24px; min-height:66px}
 .brand{display:flex; align-items:center; gap:11px; text-decoration:none; margin-right:auto}
 .mark{
-  width:34px; height:34px; border-radius:9px; flex:none;
-  background:linear-gradient(150deg,var(--accent-2),var(--accent));
-  display:grid; place-items:center; color:#fff;
-  font-family:var(--font-mono); font-size:13px; font-weight:600; letter-spacing:.02em;
+  width:38px; height:38px; border-radius:10px; flex:none; display:block;
+  object-fit:cover; background:#fff; border:1px solid var(--line-soft);
 }
 .brand b{font-family:var(--font-display); font-size:17px; letter-spacing:-.015em; display:block; line-height:1.15}
 .brand span{font-family:var(--font-mono); font-size:9.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
@@ -460,14 +459,10 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
 </style>
 </head>
 <body>
-
-
-
-
 <header>
   <div class="wrap bar">
     <a class="brand" href="#top">
-      <span class="mark" aria-hidden="true">5′</span>
+      <img class="mark" src="assets/logo-lab.png" alt="" width="38" height="38">
       <span>
         <b>Magnus Lab</b>
         <span>RNA Design &amp; Therapeutics</span>
@@ -745,6 +740,17 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
           </div>
         </article>
         <article class="item">
+          <div class="when"><span class="kind k-outreach">Outreach</span><time datetime="2026-06-02">June 2026</time></div>
+          <div>
+            <h3>Career Development Day at <a rel="noopener" target="_blank" href="https://www.ibb.waw.pl">IBB PAS</a></h3>
+            <p>Institute seminar on RNA 3D structure prediction and deep learning approaches to RNA
+               biology, on 2 June 2026 at the Institute of Biochemistry and Biophysics, Polish Academy
+               of Sciences &#8212; followed by a career discussion panel for PhD students and postdocs
+               on paths in and outside academia, and a Caf&#233; Career Hour over coffee. Invited by
+               Laura Wicke-Ryan, Olga Iwa&#324;ska and Katarzyna Jonak.</p>
+          </div>
+        </article>
+        <article class="item">
           <div class="when"><span class="kind k-team">Lab</span><time datetime="2026-06">June 2026</time></div>
           <div>
             <h3>The lab opens at CeNT, University of Warsaw</h3>
@@ -986,9 +992,9 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
           <span>youtube.com/@CASPRNASIG</span>
         </span>
       </a>
-      <div class="club archive with-logo">
+      <div class="club with-logo">
         <div class="club-body">
-        <span class="eyebrow">Archive · 2013–2022</span>
+        <span class="eyebrow">Warsaw &#183; 2013&#8211;2022 &#183; 2026 &#8211;</span>
         <h3>Do Science!</h3>
         <p>A science discussion club in Warsaw — lectures and informal meetings where researchers
            talked about their work and about science itself. It began in April 2013 with a meeting
@@ -996,8 +1002,12 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
            laureates (Robert Huber, Brian Kobilka, Venki Ramakrishnan) alongside many other speakers.
            Institute-independent and open to everyone, it was run by PhD students and postdocs from
            IIMCB and Biocentrum Ochota, with support from EMBO, IIMCB and Biocentrum Ochota, and it
-           also produced SciEvents, a shared calendar of bioscience events in Warsaw.
-           <a rel="noopener" target="_blank" href="https://doscience.iimcb.gov.pl">doscience.iimcb.gov.pl</a></p>
+           also produced SciEvents, a shared calendar of bioscience events in Warsaw. After a pause,
+           the club is running again from 2026.</p>
+          <div class="sig-links">
+            <a class="btn btn-primary" rel="noopener" target="_blank" href="https://do-science.org">do-science.org &#8599;</a>
+            <a class="btn btn-ghost" rel="noopener" target="_blank" href="https://doscience.iimcb.gov.pl">Archive 2013&#8211;2022</a>
+          </div>
         </div>
         <img class="club-logo" src="assets/logo-do-science.jpg" alt="Do Science!" width="160" height="160">
       </div>
@@ -1114,6 +1124,5 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
   sync();
 })();
 </script>
-
 </body>
 </html>
