@@ -207,6 +207,22 @@ nav a.nav-cta{display:none}
 }
 
 /* ---------- news ---------- */
+.news-filter{
+  display:flex; gap:8px; flex-wrap:nowrap; margin-top:4px;
+  overflow-x:auto; padding-bottom:4px; scrollbar-width:thin;
+}
+.news-filter button{flex:none}
+.news-filter button{
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-3); background:var(--surface); border:1px solid var(--line);
+  border-radius:999px; padding:6px 13px; cursor:pointer;
+}
+.news-filter button:hover{border-color:var(--accent-3); color:var(--ink-2)}
+.news-filter .count{margin-left:7px; opacity:.65; font-weight:400}
+.news-filter button[aria-pressed="true"]{
+  background:var(--accent-soft); border-color:var(--accent); color:var(--accent); font-weight:600;
+}
+.item[hidden]{display:none}
 .news{display:grid; gap:0}
 .item{
   display:grid; grid-template-columns:170px 1fr; gap:24px;
@@ -677,6 +693,7 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
         <span class="eyebrow">Latest updates</span>
         <h2>News from the lab</h2>
         <p>New results, people joining, talks and preprints.</p>
+        <div class="news-filter" id="newsfilter" role="group" aria-label="Filter news by kind"></div>
       </div>
       <div class="news">
         <article class="item">
@@ -1120,6 +1137,51 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
 </footer>
 
 <script>
+(function () {
+  var bar = document.getElementById('newsfilter');
+  var items = [].slice.call(document.querySelectorAll('#news .item'));
+  if (!bar || !items.length) { return; }
+
+  var kinds = [];
+  var counts = {};
+  items.forEach(function (it) {
+    var k = it.querySelector('.kind');
+    var name = k ? k.textContent.trim() : '';
+    it.setAttribute('data-kind', name);
+    if (name && kinds.indexOf(name) === -1) { kinds.push(name); }
+    if (name) { counts[name] = (counts[name] || 0) + 1; }
+  });
+
+  function make(label, value, count) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.appendChild(document.createTextNode(label));
+    var c = document.createElement('span');
+    c.className = 'count';
+    c.textContent = count;
+    b.appendChild(c);
+    b.setAttribute('data-filter', value);
+    b.setAttribute('aria-pressed', value === '' ? 'true' : 'false');
+    bar.appendChild(b);
+    return b;
+  }
+
+  make('All', '', items.length);
+  kinds.forEach(function (k) { make(k, k, counts[k]); });
+
+  bar.addEventListener('click', function (e) {
+    var btn = e.target.closest('button[data-filter]');
+    if (!btn) { return; }
+    var value = btn.getAttribute('data-filter');
+    [].forEach.call(bar.children, function (b) {
+      b.setAttribute('aria-pressed', String(b === btn));
+    });
+    items.forEach(function (it) {
+      it.hidden = value !== '' && it.getAttribute('data-kind') !== value;
+    });
+  });
+})();
+
 (function () {
   var burger = document.getElementById('burger');
   var nav = document.getElementById('mainnav');
