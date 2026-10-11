@@ -171,6 +171,37 @@ nav a.nav-cta{display:none}
 
 /* ---------- research ---------- */
 .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
+.mrna-map{margin:clamp(26px,3.5vw,40px) 0 0; display:flex; flex-direction:column; gap:14px}
+.mrna-scroll{overflow-x:auto; padding-bottom:6px; scrollbar-width:thin;
+  background:var(--surface); border:1px solid var(--line); border-radius:14px}
+.mrna-map svg{display:block; width:100%; min-width:860px; height:auto; padding:14px 10px}
+.mrna-map .zone{fill:var(--line-soft); opacity:.5}
+.mrna-map .zone-label{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; fill:var(--ink-3)}
+.mrna-map .pt{font-family:var(--font-mono); font-size:10px; letter-spacing:.06em; fill:var(--ink-3)}
+.mrna-map .bb{stroke:var(--ink-3); stroke-width:2.5; fill:none; stroke-linecap:round}
+.mrna-map .cap{fill:var(--ink-3)}
+.mrna-map .codon{fill:var(--accent)}
+.mrna-map .elem path{stroke:var(--ink-2); stroke-width:2.5; fill:none; stroke-linecap:round}
+.mrna-map .elem circle{fill:none; stroke:var(--ink-2); stroke-width:2.5}
+.mrna-map .elem .rung{stroke:var(--line); stroke-width:2}
+.mrna-map .elem .knot{stroke:var(--ink-2); stroke-width:2.5; stroke-dasharray:4 4}
+.mrna-map .ribo ellipse{fill:var(--accent-soft); stroke:var(--accent-3); stroke-width:2}
+.mrna-map .chain circle{fill:none; stroke:var(--ink-3); stroke-width:2}
+.mrna-map .mir path{stroke:var(--ink-2); stroke-width:2.5; fill:none; stroke-linecap:round}
+.mrna-map .mir .rung{stroke:var(--line); stroke-width:2}
+.mrna-map .polya circle{fill:none; stroke:var(--ink-3); stroke-width:2}
+.mrna-map .rail{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.mrna-map .seg{stroke-width:11; stroke-linecap:round}
+.mrna-map .seg.a{stroke:var(--base-a)} .mrna-map .seg.c{stroke:var(--base-c)}
+.mrna-map .seg.g{stroke:var(--base-g)} .mrna-map .seg.u{stroke:var(--base-u)}
+.mrna-map .tl{font-family:var(--font-display); font-size:14px; font-weight:600; text-anchor:end}
+.mrna-map .tl.neutral{fill:var(--ink-2)}
+.mrna-map .tl.a{fill:var(--base-a)} .mrna-map .tl.c{fill:var(--base-c)}
+.mrna-map .tl.g{fill:var(--base-g)} .mrna-map .tl.u{fill:var(--base-u)}
+.mrna-map .ts{font-family:var(--font-mono); font-size:10px; letter-spacing:.06em;
+  fill:var(--ink-3); text-anchor:end}
+.mrna-map figcaption{font-size:15px; color:var(--ink-2); max-width:70ch}
 .card{
   background:var(--surface); border:1px solid var(--line); border-radius:14px;
   padding:26px 26px 28px; display:flex; flex-direction:column; gap:12px;
@@ -608,6 +639,127 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
         </article>
 
       </div>
+
+      <figure class="mrna-map">
+        <div class="mrna-scroll">
+          <svg viewBox="0 0 1120 470" role="img" aria-labelledby="mrnaTitle mrnaDesc">
+            <title id="mrnaTitle">Where the lab's four research areas land on a messenger RNA</title>
+            <desc id="mrnaDesc">A schematic messenger RNA with a 5-prime untranslated region containing a
+              hairpin and an IRES, a coding region with a translating ribosome, and a 3-prime untranslated
+              region with a protein-binding stem-loop, a microRNA site and a polyA tail. Four tracks below
+              mark which parts of the molecule each research area addresses: mRNA design with language
+              models spans the whole transcript; RNA 3D structure prediction covers every folded element;
+              RNA–small molecule interactions cover the pockets those elements present; chemically modified
+              RNA covers the untranslated regions and the IRES.</desc>
+
+            <!-- region bands -->
+            <rect x="280" y="22" width="240" height="176" rx="10" class="zone"/>
+            <rect x="528" y="22" width="264" height="176" rx="10" class="zone"/>
+            <rect x="800" y="22" width="272" height="176" rx="10" class="zone"/>
+            <text x="400" y="44" class="zone-label" text-anchor="middle">5&#8242; UTR</text>
+            <text x="660" y="44" class="zone-label" text-anchor="middle">Coding region</text>
+            <text x="936" y="44" class="zone-label" text-anchor="middle">3&#8242; UTR</text>
+
+            <text x="252" y="146" class="tl neutral">messenger RNA</text>
+            <text x="252" y="162" class="ts">5&#8242; cap to polyA tail</text>
+
+            <!-- backbone -->
+            <path class="bb" d="M296 150 H352 M374 150 H448 M484 150 H560 M600 150 H700 M724 150 H812 M838 150 H900 M930 150 H1004"/>
+            <circle class="cap" cx="292" cy="150" r="9"/>
+            <text x="292" y="180" class="pt" text-anchor="middle">m7G</text>
+
+            <!-- 5' UTR: hairpin -->
+            <g class="elem">
+              <path d="M356 150 V112 M372 150 V112"/>
+              <path class="rung" d="M356 140 H372 M356 130 H372 M356 120 H372"/>
+              <circle cx="364" cy="100" r="13"/>
+            </g>
+            <text x="364" y="180" class="pt" text-anchor="middle">hairpin</text>
+
+            <!-- 5' UTR: IRES / pseudoknot -->
+            <g class="elem">
+              <path d="M452 150 V108 M468 150 V108"/>
+              <path class="rung" d="M452 142 H468 M452 132 H468 M452 122 H468"/>
+              <circle cx="460" cy="96" r="15"/>
+              <path d="M464 150 V128 M480 150 V128" transform="translate(16 0)"/>
+              <circle cx="488" cy="118" r="10"/>
+              <path class="knot" d="M460 82 C 492 60, 520 92, 496 110"/>
+            </g>
+            <text x="470" y="180" class="pt" text-anchor="middle">IRES / pseudoknot</text>
+
+            <!-- start / stop codons -->
+            <circle class="codon" cx="563" cy="150" r="7"/>
+            <text x="563" y="196" class="pt" text-anchor="middle">start</text>
+            <circle class="codon" cx="797" cy="150" r="7"/>
+            <text x="797" y="196" class="pt" text-anchor="middle">stop</text>
+
+            <!-- ribosome + nascent chain -->
+            <g class="ribo">
+              <ellipse cx="660" cy="158" rx="42" ry="26"/>
+              <ellipse cx="664" cy="126" rx="30" ry="20"/>
+            </g>
+            <g class="chain">
+              <circle cx="686" cy="104" r="5"/><circle cx="698" cy="92" r="5"/>
+              <circle cx="706" cy="77" r="5"/><circle cx="702" cy="62" r="5"/>
+              <circle cx="690" cy="52" r="5"/>
+            </g>
+            <text x="660" y="196" class="pt" text-anchor="middle">ribosome</text>
+
+            <!-- 3' UTR: protein-binding stem-loop -->
+            <g class="elem">
+              <path d="M816 150 V106 M832 150 V106"/>
+              <path class="rung" d="M816 142 H832 M816 132 H832 M816 120 H832"/>
+              <circle cx="824" cy="94" r="14"/>
+            </g>
+            <text x="824" y="180" class="pt" text-anchor="middle">protein-binding</text>
+
+            <!-- 3' UTR: miRNA site -->
+            <g class="mir">
+              <path d="M904 146 H926 M904 134 H926"/>
+              <path class="rung" d="M909 146 V134 M915 146 V134 M921 146 V134"/>
+            </g>
+            <text x="915" y="180" class="pt" text-anchor="middle">miRNA site</text>
+
+            <!-- polyA tail -->
+            <g class="polya">
+              <circle cx="1014" cy="146"  r="5"/><circle cx="1028" cy="138" r="5"/>
+              <circle cx="1042" cy="128" r="5"/><circle cx="1054" cy="116" r="5"/>
+              <circle cx="1062" cy="102" r="5"/>
+            </g>
+            <text x="1046" y="180" class="pt" text-anchor="middle">polyA</text>
+
+            <!-- tracks -->
+            <g class="tracks">
+              <line class="rail" x1="280" y1="252" x2="1072" y2="252"/>
+              <line class="seg g" x1="286" y1="252" x2="1066" y2="252"/>
+              <text x="252" y="248" class="tl g">mRNA design &#183; language models</text>
+              <text x="252" y="264" class="ts">the whole transcript</text>
+
+              <line class="rail" x1="280" y1="306" x2="1072" y2="306"/>
+              <line class="seg c" x1="350" y1="306" x2="378" y2="306"/>
+              <line class="seg c" x1="444" y1="306" x2="498" y2="306"/>
+              <line class="seg c" x1="808" y1="306" x2="840" y2="306"/>
+              <text x="252" y="302" class="tl c">RNA 3D structure prediction</text>
+              <text x="252" y="318" class="ts">every folded element</text>
+
+              <line class="rail" x1="280" y1="360" x2="1072" y2="360"/>
+              <line class="seg a" x1="444" y1="360" x2="498" y2="360"/>
+              <line class="seg a" x1="808" y1="360" x2="840" y2="360"/>
+              <text x="252" y="356" class="tl a">RNA&#8211;small molecule interactions</text>
+              <text x="252" y="372" class="ts">pockets those elements present</text>
+
+              <line class="rail" x1="280" y1="414" x2="1072" y2="414"/>
+              <line class="seg u" x1="286" y1="414" x2="556" y2="414"/>
+              <line class="seg u" x1="804" y1="414" x2="1066" y2="414"/>
+              <text x="252" y="410" class="tl u">Chemically modified RNA</text>
+              <text x="252" y="426" class="ts">&#936; in the UTRs and the IRES</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>The four areas are one problem seen from four sides: predict the shape, find what binds it,
+          change the chemistry that holds it together, and write sequences that fold the way we want. Aptamers and
+          SELEX libraries are studied as standalone RNAs as well, not only inside a messenger.</figcaption>
+      </figure>
     </div>
   </section>
 
