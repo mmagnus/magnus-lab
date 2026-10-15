@@ -171,6 +171,21 @@ nav a.nav-cta{display:none}
 
 /* ---------- research ---------- */
 .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
+.pub-all{display:flex; flex-direction:column}
+.pubyear{display:grid; grid-template-columns:76px 1fr; gap:26px; align-items:start;
+  padding:26px 0; border-top:1px solid var(--line)}
+.pubyear > h3{font-family:var(--font-mono); font-size:13px; letter-spacing:.14em;
+  color:var(--accent); padding-top:3px}
+.pub-list{display:flex; flex-direction:column; gap:26px; min-width:0}
+.pub-item p{margin:0}
+.pub-item .au{font-size:15px; color:var(--ink-2); line-height:1.5}
+.pub-item .ti{font-size:17.5px; color:var(--ink); line-height:1.4; margin-top:2px}
+.pub-item .ve{font-size:15px; color:var(--ink-3); margin-top:2px}
+.pub-item .lk{margin-top:7px; display:flex; flex-wrap:wrap; gap:7px}
+.pub-item .lk a{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent); text-decoration:none;
+  border:1px solid var(--line); border-radius:999px; padding:3px 10px; background:var(--surface)}
+.pub-item .lk a:hover{border-color:var(--accent-3); background:var(--accent-soft)}
 .mrna-map{margin:clamp(26px,3.5vw,40px) 0 0; display:flex; flex-direction:column; gap:14px}
 .mrna-scroll{overflow-x:auto; padding-bottom:6px; scrollbar-width:thin;
   background:var(--surface); border:1px solid var(--line); border-radius:14px}
@@ -481,6 +496,7 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
 @media (max-width:900px){
   .hero-grid,.split{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
+  .pubyear{grid-template-columns:1fr; gap:10px}
   .team{grid-template-columns:repeat(2,1fr)}
   .repo{grid-template-columns:1fr; gap:8px}
 
@@ -760,6 +776,69 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
           change the chemistry that holds it together, and write sequences that fold the way we want. Aptamers and
           SELEX libraries are studied as standalone RNAs as well, not only inside a messenger.</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Selected publications</span>
+        <h2>Recent work</h2>
+        <p>A few papers that say what the lab works on. The complete list is <a href="#all-publications">further down the page</a>.</p>
+      </div>
+      <div class="pubs">
+        <article class="pub">
+          <span class="yr">2026</span>
+          <div>
+            <h3>OpenRNAFold: an end-to-end approach for RNA 3D structure prediction<span class="todo prog">in progress</span></h3>
+            <p class="authors">Author list to be completed</p>
+            <p class="venue">Manuscript in preparation</p>
+          </div>
+        </article>
+        <!-- hidden for now
+        <article class="pub">
+          <span class="yr">2026</span>
+          <div>
+            <h3>NAPAIR: determination of base pair interactions in nucleic acid 3D structures<span class="todo prog">in progress</span></h3>
+            <p class="authors">Svoboda, J.; Luke&#353;, S.; &#268;ern&#253;, J.; Berman, H.; Biedermannov&#225;, L.; Bo&#382;&#237;kov&#225;, P.;
+               Joosten, R. P.; Lawson, C. L.; <b>Magnus, M.</b>; Vallat, B.; Zirbel, C.; Westhof, E.; Schneider, B.</p>
+            <p class="venue">Manuscript in preparation</p>
+          </div>
+        </article>
+        -->
+        <article class="pub">
+          <span class="yr">2025</span>
+          <div>
+            <h3>RNA-Puzzles Round V: blind predictions of 23 RNA structures</h3>
+            <p class="authors">Bu, F.; …; <b>Magnus, M.</b>; …; Westhof, E.<span class="corr" title="Corresponding author">&#9993;</span>; Miao, Z.<span class="corr" title="Corresponding author">&#9993;</span> (RNA-Puzzles consortium)</p>
+            <p class="venue">Nature Methods 22(2), 399–411 · DOI: 10.1038/s41592-024-02543-9</p>
+            <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1038/s41592-024-02543-9">Paper · Nature Methods</a></div>
+          </div>
+        </article>
+        <article class="pub">
+          <span class="yr">2025</span>
+          <div>
+            <h3>RNAhub — an automated pipeline to search and align RNA homologs with secondary structure assessment</h3>
+            <p class="authors"><b>Magnus, M.</b><span class="corr" title="Corresponding author">&#9993;</span>; Gao, W.; Dutta, N.; Vicens, Q.<span class="corr" title="Corresponding author">&#9993;</span>; Rivas, E.<span class="corr" title="Corresponding author">&#9993;</span></p>
+            <p class="venue">Nucleic Acids Research 53(W1), W496–W502 · DOI: 10.1093/nar/gkaf342</p>
+            <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkaf342">Paper &#183; NAR</a><a rel="noopener" target="_blank" href="https://rnahub.org">Web server &#183; rnahub.org</a></div>
+          </div>
+        </article>
+        <article class="pub">
+          <span class="yr">2024</span>
+          <div>
+            <h3>RNA3DB: a structurally-dissimilar dataset split for training and benchmarking deep learning models for RNA structure prediction</h3>
+            <p class="authors">Szikszai, M.; <b>Magnus, M.</b>; Sanghi, S.; Kadyan, S.; Bouatta, N.; Rivas, E.<span class="corr" title="Corresponding author">&#9993;</span></p>
+            <p class="venue">Journal of Molecular Biology 436(17), 168552 · DOI: 10.1016/j.jmb.2024.168552</p>
+            <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1016/j.jmb.2024.168552">Paper · JMB</a><a rel="noopener" target="_blank" href="https://github.com/marcellszi/rna3db">GitHub</a></div>
+          </div>
+        </article>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#all-publications">All papers</a>
+        <a class="btn btn-ghost" rel="noopener" target="_blank"
+           href="https://scholar.google.pl/citations?user=O2gLO2EAAAAJ&amp;hl=en">Google Scholar</a>
+      </div>
     </div>
   </section>
 
@@ -1090,69 +1169,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
     </div>
   </section>
 
-  <section id="publications">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Selected publications</span>
-        <h2>Recent work</h2>
-        <p>Replace the entries below with your selected papers — title, author list, journal and DOI.</p>
-      </div>
-      <div class="pubs">
-        <article class="pub">
-          <span class="yr">2026</span>
-          <div>
-            <h3>OpenRNAFold: an end-to-end approach for RNA 3D structure prediction<span class="todo prog">in progress</span></h3>
-            <p class="authors">Author list to be completed</p>
-            <p class="venue">Manuscript in preparation</p>
-          </div>
-        </article>
-        <!-- hidden for now
-        <article class="pub">
-          <span class="yr">2026</span>
-          <div>
-            <h3>NAPAIR: determination of base pair interactions in nucleic acid 3D structures<span class="todo prog">in progress</span></h3>
-            <p class="authors">Svoboda, J.; Luke&#353;, S.; &#268;ern&#253;, J.; Berman, H.; Biedermannov&#225;, L.; Bo&#382;&#237;kov&#225;, P.;
-               Joosten, R. P.; Lawson, C. L.; <b>Magnus, M.</b>; Vallat, B.; Zirbel, C.; Westhof, E.; Schneider, B.</p>
-            <p class="venue">Manuscript in preparation</p>
-          </div>
-        </article>
-        -->
-        <article class="pub">
-          <span class="yr">2025</span>
-          <div>
-            <h3>RNA-Puzzles Round V: blind predictions of 23 RNA structures</h3>
-            <p class="authors">Bu, F.; …; <b>Magnus, M.</b>; …; Westhof, E.<span class="corr" title="Corresponding author">&#9993;</span>; Miao, Z.<span class="corr" title="Corresponding author">&#9993;</span> (RNA-Puzzles consortium)</p>
-            <p class="venue">Nature Methods 22(2), 399–411 · DOI: 10.1038/s41592-024-02543-9</p>
-            <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1038/s41592-024-02543-9">Paper · Nature Methods</a></div>
-          </div>
-        </article>
-        <article class="pub">
-          <span class="yr">2025</span>
-          <div>
-            <h3>RNAhub — an automated pipeline to search and align RNA homologs with secondary structure assessment</h3>
-            <p class="authors"><b>Magnus, M.</b><span class="corr" title="Corresponding author">&#9993;</span>; Gao, W.; Dutta, N.; Vicens, Q.<span class="corr" title="Corresponding author">&#9993;</span>; Rivas, E.<span class="corr" title="Corresponding author">&#9993;</span></p>
-            <p class="venue">Nucleic Acids Research 53(W1), W496–W502 · DOI: 10.1093/nar/gkaf342</p>
-            <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkaf342">Paper &#183; NAR</a><a rel="noopener" target="_blank" href="https://rnahub.org">Web server &#183; rnahub.org</a></div>
-          </div>
-        </article>
-        <article class="pub">
-          <span class="yr">2024</span>
-          <div>
-            <h3>RNA3DB: a structurally-dissimilar dataset split for training and benchmarking deep learning models for RNA structure prediction</h3>
-            <p class="authors">Szikszai, M.; <b>Magnus, M.</b>; Sanghi, S.; Kadyan, S.; Bouatta, N.; Rivas, E.<span class="corr" title="Corresponding author">&#9993;</span></p>
-            <p class="venue">Journal of Molecular Biology 436(17), 168552 · DOI: 10.1016/j.jmb.2024.168552</p>
-            <div class="links"><a rel="noopener" target="_blank" href="https://doi.org/10.1016/j.jmb.2024.168552">Paper · JMB</a><a rel="noopener" target="_blank" href="https://github.com/marcellszi/rna3db">GitHub</a></div>
-          </div>
-        </article>
-      </div>
-      <div class="hero-cta">
-        <a class="btn btn-ghost" rel="noopener" target="_blank"
-           href="https://pubmed.ncbi.nlm.nih.gov/?term=Magnus+M&amp;cauthor_id=40304050">Full list on PubMed</a>
-        <a class="btn btn-ghost" rel="noopener" target="_blank"
-           href="https://scholar.google.pl/citations?user=O2gLO2EAAAAJ&amp;hl=en">Google Scholar</a>
-      </div>
-    </div>
-  </section>
 
   <section id="teaching">
     <div class="wrap teach">
@@ -1276,6 +1292,246 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
       </div>
     </div>
   </section>
+
+  <section id="all-publications">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Publications</span>
+        <h2>All papers</h2>
+        <p>Everything, newest first. Book chapters and preprints included.</p>
+      </div>
+      <div class="pub-all">
+        <div class="pubyear">
+          <h3>2026</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au">The RNAcentral Consortium.</p>
+              <p class="ti">&#8220;RNAcentral in 2026: genes and literature integration&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i> 54(D1), D303–D313.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkaf1329">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Elofsson, A.; Kretsch, R. C.; <b>Magnus, M.</b>; Montelione, G. T.</p>
+              <p class="ti">&#8220;Engaging the community: CASP special interest groups&#8221;</p>
+              <p class="ve"><i>Proteins: Structure, Function, and Bioinformatics</i> 94(1), 432–434.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1002/prot.26833">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2025</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au"><b>Magnus, M.</b>; Gao, W.; Dutta, N.; Vicens, Q.; Rivas, E.</p>
+              <p class="ti">&#8220;RNAhub — an automated pipeline to search and align RNA homologs with secondary structure assessment&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i> 53(W1), W496–W502.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkaf342">DOI</a><a rel="noopener" target="_blank" href="https://rnahub.org">Web server</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Szikszai, M.; <b>Magnus, M.</b>; Kadyan, S.; Rivas, E.</p>
+              <p class="ti">&#8220;On inputs to deep learning for RNA 3D structure prediction&#8221;</p>
+              <p class="ve"><i>bioRxiv</i> 2025.02.14.638364.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1101/2025.02.14.638364">Preprint</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Bu, F.; Adam, Y.; Adamiak, R. W.; Antczak, M.; de Aquino, B. R. H.; Badepally, N. G.; et al. (incl. <b>Magnus, M.</b>)</p>
+              <p class="ti">&#8220;RNA-Puzzles Round V: blind predictions of 23 RNA structures&#8221;</p>
+              <p class="ve"><i>Nature Methods</i> 22(2), 399–411.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1038/s41592-024-02543-9">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2024</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au">Moafinejad, S. N.; de Aquino, B. R. H.; Boniecki, M. J.; Jeyeram, I. P. N. P.; Nikolaev, G.; et al.</p>
+              <p class="ti">&#8220;SimRNAweb v2.0: a web server for RNA folding simulations and 3D structure modeling, with optional restraints and enhanced analysis of folding trajectories&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i> gkae356.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkae356">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Szikszai, M.; <b>Magnus, M.</b>; Sanghi, S.; Kadyan, S.; Bouatta, N.; Rivas, E.</p>
+              <p class="ti">&#8220;RNA3DB: a structurally-dissimilar dataset split for training and benchmarking deep learning models for RNA structure prediction&#8221;</p>
+              <p class="ve"><i>Journal of Molecular Biology</i> 436(17), 168552.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1016/j.jmb.2024.168552">DOI</a><a rel="noopener" target="_blank" href="https://github.com/marcellszi/rna3db">Code</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2023</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au">Chojnowski, G.; Zaborowski, R.; <b>Magnus, M.</b>; Mukherjee, S.; Bujnicki, J. M.</p>
+              <p class="ti">&#8220;RNA 3D structure modeling by fragment assembly with small-angle X-ray scattering restraints&#8221;</p>
+              <p class="ve"><i>Bioinformatics</i> 39(9), btad527.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/bioinformatics/btad527">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au"><b>Magnus, M.</b>; Miao, Z.</p>
+              <p class="ti">&#8220;RNA 3D structure comparison using RNA-Puzzles toolkit&#8221;</p>
+              <p class="ve"><i>RNA Structure Prediction (Methods in Molecular Biology)</i> 263–285.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1007/978-1-0716-2768-6_16">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2022</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au"><b>Magnus, M.</b></p>
+              <p class="ti">&#8220;rna-tools.online: a Swiss army knife for RNA 3D structure modeling workflow&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i>.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkac372">DOI</a><a rel="noopener" target="_blank" href="https://rna-tools.online">Web server</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2020</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au">Miao, Z.; Adamiak, R. W.; Antczak, M.; Boniecki, M. J.; Bujnicki, J. M.; Chen, S.-J.; et al.</p>
+              <p class="ti">&#8220;RNA-Puzzles Round IV: 3D structure predictions of four ribozymes and two aptamers&#8221;</p>
+              <p class="ve"><i>RNA</i> 26(8), 982–995.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1261/rna.075341.120">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au"><b>Magnus, M.</b>; Antczak, M.; Zok, T.; Wiedemann, J.; Lukasiak, P.; Cao, Y.; et al.</p>
+              <p class="ti">&#8220;RNA-Puzzles toolkit: a computational resource of RNA 3D structure benchmark datasets, structure manipulation, and evaluation tools&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i> 48(2), 576–588.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkz1108">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2019</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au"><b>Magnus, M.</b>; Kappel, K.; Das, R.; Bujnicki, J. M.</p>
+              <p class="ti">&#8220;RNA 3D structure prediction guided by independent folding of homologous sequences&#8221;</p>
+              <p class="ve"><i>BMC Bioinformatics</i> 20(1), 512.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1186/s12859-019-3120-y">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Eysmont, K.; Matylla-Kulińska, K.; Jaskulska, A.; <b>Magnus, M.</b>; Konarska, M. M.</p>
+              <p class="ti">&#8220;Rearrangements within the U6 snRNA core during the transition between the two catalytic steps of splicing&#8221;</p>
+              <p class="ve"><i>Molecular Cell</i> 75(3), 538–548.e3.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1016/j.molcel.2019.05.018">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2017</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au">Boccaletto, P.; <b>Magnus, M.</b>; Almeida, C.; Żyła, A.; Astha, A.; Pluta, R.; Bagiński, B.; et al.</p>
+              <p class="ti">&#8220;RNArchitecture: a database and a classification system of RNA families, with a focus on structural information&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i> 46(D1), D202–D205.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkx966">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Miao, Z.; Adamiak, R. W.; Antczak, M.; Batey, R. T.; Becka, A. J.; Biesiada, M.; et al.</p>
+              <p class="ti">&#8220;RNA-Puzzles Round III: 3D RNA structure prediction of five riboswitches and one ribozyme&#8221;</p>
+              <p class="ve"><i>RNA</i> 23(5), 655–672.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1261/rna.060368.116">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2016</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au">Piatkowski, P.; Kasprzak, J. M.; Kumar, D.; <b>Magnus, M.</b>; Chojnowski, G.; et al.</p>
+              <p class="ti">&#8220;RNA 3D structure modeling by combination of template-based method ModeRNA, template-free folding with SimRNA, and refinement with QRNAS&#8221;</p>
+              <p class="ve"><i>RNA Structure Determination: Methods and Protocols</i> 217–235.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1007/978-1-4939-6433-8_14">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Madan, B.; Kasprzak, J. M.; Tuszynska, I.; <b>Magnus, M.</b>; Szczepaniak, K.; et al.</p>
+              <p class="ti">&#8220;Modeling of protein–RNA complex structures using computational docking methods&#8221;</p>
+              <p class="ve"><i>Computational Design of Ligand Binding Proteins</i> 353–372.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1007/978-1-4939-3569-7_21">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au"><b>Magnus, M.</b>; Boniecki, M. J.; Dawson, W.; Bujnicki, J. M.</p>
+              <p class="ti">&#8220;SimRNAweb: a web server for RNA 3D structure modeling with optional restraints&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i> 44(W1), W315–W319.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkw279">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2015</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au">Miao, Z.; Adamiak, R. W.; Blanchet, M.-F.; Boniecki, M.; Bujnicki, J. M.; Chen, S.-J.; et al.</p>
+              <p class="ti">&#8220;RNA-Puzzles Round II: assessment of RNA structure prediction programs applied to three large RNA structures&#8221;</p>
+              <p class="ve"><i>RNA</i> 21(6), 1066–1084.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1261/rna.049502.114">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Tuszynska, I.; <b>Magnus, M.</b>; Jonak, K.; Dawson, W.; Bujnicki, J. M.</p>
+              <p class="ti">&#8220;NPDock: a web server for protein–nucleic acid docking&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i>.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gkv493">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2014</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au"><b>Magnus, M.</b>; Matelska, D.; Łach, G.; Chojnowski, G.; Boniecki, M. J.; Purta, E.; et al.</p>
+              <p class="ti">&#8220;Computational modeling of RNA 3D structures, with the aid of experimental restraints&#8221;</p>
+              <p class="ve"><i>RNA Biology</i> 11(5), 522–536.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.4161/rna.28826">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Tuszynska, I.; Matelska, D.; <b>Magnus, M.</b>; Chojnowski, G.; Kasprzak, J. M.; et al.</p>
+              <p class="ti">&#8220;Computational modeling of protein–RNA complex structures&#8221;</p>
+              <p class="ve"><i>Methods</i> 65(3), 310–319.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1016/j.ymeth.2013.09.014">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2012</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au"><b>Magnus, M.</b>; Pawlowski, M.; Bujnicki, J. M.</p>
+              <p class="ti">&#8220;MetaLocGramN: a meta-predictor of protein subcellular localization for Gram-negative bacteria&#8221;</p>
+              <p class="ve"><i>Biochimica et Biophysica Acta — Proteins and Proteomics</i> 1824(12), 1425–1433.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1016/j.bbapap.2012.05.018">DOI</a></p>
+            </div>
+            <div class="pub-item">
+              <p class="au">Korneta, I.; <b>Magnus, M.</b>; Bujnicki, J. M.</p>
+              <p class="ti">&#8220;Structural bioinformatics of the human spliceosomal proteome&#8221;</p>
+              <p class="ve"><i>Nucleic Acids Research</i> 40(15), 7046–7065.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1093/nar/gks347">DOI</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="pubyear">
+          <h3>2008</h3>
+          <div class="pub-list">
+            <div class="pub-item">
+              <p class="au">Kozlowski, P.; Starega-Roslan, J.; Legacz, M.; <b>Magnus, M.</b>; Krzyzosiak, W. J.</p>
+              <p class="ti">&#8220;Structures of microRNA precursors&#8221;</p>
+              <p class="ve"><i>Current Perspectives in microRNAs (miRNA)</i> 1–16.</p>
+              <p class="lk"><a rel="noopener" target="_blank" href="https://doi.org/10.1007/978-1-4020-8533-8_1">DOI</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-ghost" rel="noopener" target="_blank"
+           href="https://scholar.google.pl/citations?user=O2gLO2EAAAAJ&amp;hl=en">Google Scholar</a>
+        <a class="btn btn-ghost" rel="noopener" target="_blank"
+           href="https://pubmed.ncbi.nlm.nih.gov/?term=Magnus+M">PubMed</a>
+      </div>
+    </div>
+  </section>
+
 
   <section id="contact">
     <div class="wrap">
