@@ -656,6 +656,7 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
 
       </div>
 
+      <!-- mRNA research-area map, hidden for now
       <figure class="mrna-map">
         <div class="mrna-scroll">
           <svg viewBox="0 0 1120 470" role="img" aria-labelledby="mrnaTitle mrnaDesc">
@@ -668,7 +669,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
               RNA–small molecule interactions cover the pockets those elements present; chemically modified
               RNA covers the untranslated regions and the IRES.</desc>
 
-            <!-- region bands -->
             <rect x="280" y="22" width="240" height="176" rx="10" class="zone"/>
             <rect x="528" y="22" width="264" height="176" rx="10" class="zone"/>
             <rect x="800" y="22" width="272" height="176" rx="10" class="zone"/>
@@ -679,12 +679,10 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
             <text x="252" y="146" class="tl neutral">messenger RNA</text>
             <text x="252" y="162" class="ts">5&#8242; cap to polyA tail</text>
 
-            <!-- backbone -->
             <path class="bb" d="M296 150 H352 M374 150 H448 M484 150 H560 M600 150 H700 M724 150 H812 M838 150 H900 M930 150 H1004"/>
             <circle class="cap" cx="292" cy="150" r="9"/>
             <text x="292" y="180" class="pt" text-anchor="middle">m7G</text>
 
-            <!-- 5' UTR: hairpin -->
             <g class="elem">
               <path d="M356 150 V112 M372 150 V112"/>
               <path class="rung" d="M356 140 H372 M356 130 H372 M356 120 H372"/>
@@ -692,7 +690,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
             </g>
             <text x="364" y="180" class="pt" text-anchor="middle">hairpin</text>
 
-            <!-- 5' UTR: IRES / pseudoknot -->
             <g class="elem">
               <path d="M452 150 V108 M468 150 V108"/>
               <path class="rung" d="M452 142 H468 M452 132 H468 M452 122 H468"/>
@@ -703,13 +700,11 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
             </g>
             <text x="470" y="180" class="pt" text-anchor="middle">IRES / pseudoknot</text>
 
-            <!-- start / stop codons -->
             <circle class="codon" cx="563" cy="150" r="7"/>
             <text x="563" y="196" class="pt" text-anchor="middle">start</text>
             <circle class="codon" cx="797" cy="150" r="7"/>
             <text x="797" y="196" class="pt" text-anchor="middle">stop</text>
 
-            <!-- ribosome + nascent chain -->
             <g class="ribo">
               <ellipse cx="660" cy="158" rx="42" ry="26"/>
               <ellipse cx="664" cy="126" rx="30" ry="20"/>
@@ -721,7 +716,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
             </g>
             <text x="660" y="196" class="pt" text-anchor="middle">ribosome</text>
 
-            <!-- 3' UTR: protein-binding stem-loop -->
             <g class="elem">
               <path d="M816 150 V106 M832 150 V106"/>
               <path class="rung" d="M816 142 H832 M816 132 H832 M816 120 H832"/>
@@ -729,14 +723,12 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
             </g>
             <text x="824" y="180" class="pt" text-anchor="middle">protein-binding</text>
 
-            <!-- 3' UTR: miRNA site -->
             <g class="mir">
               <path d="M904 146 H926 M904 134 H926"/>
               <path class="rung" d="M909 146 V134 M915 146 V134 M921 146 V134"/>
             </g>
             <text x="915" y="180" class="pt" text-anchor="middle">miRNA site</text>
 
-            <!-- polyA tail -->
             <g class="polya">
               <circle cx="1014" cy="146"  r="5"/><circle cx="1028" cy="138" r="5"/>
               <circle cx="1042" cy="128" r="5"/><circle cx="1054" cy="116" r="5"/>
@@ -744,7 +736,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
             </g>
             <text x="1046" y="180" class="pt" text-anchor="middle">polyA</text>
 
-            <!-- tracks -->
             <g class="tracks">
               <line class="rail" x1="280" y1="252" x2="1072" y2="252"/>
               <line class="seg g" x1="286" y1="252" x2="1066" y2="252"/>
@@ -776,6 +767,7 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
           change the chemistry that holds it together, and write sequences that fold the way we want. Aptamers and
           SELEX libraries are studied as standalone RNAs as well, not only inside a messenger.</figcaption>
       </figure>
+      -->
     </div>
   </section>
 
