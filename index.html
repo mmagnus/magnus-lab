@@ -84,6 +84,13 @@ nav a{
 }
 nav a:hover{color:var(--ink); border-bottom-color:var(--accent)}
 nav a.nav-cta{display:none}
+.hero-top{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+.host{display:flex; align-items:center; gap:13px; padding-left:18px;
+  border-left:1px solid var(--line)}
+.host a{display:block; line-height:0}
+.host img{height:38px; width:38px; object-fit:contain; display:block}
+.host img.wide{width:104px; height:34px}
+@media (max-width:560px){.host{padding-left:0; border-left:0}}
 .burger{
   display:none; order:2; margin-left:auto;
   width:42px; height:38px; padding:9px 8px; border:1px solid var(--line);
@@ -568,7 +575,13 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="pill"><span class="dot"></span> University of Warsaw · CeNT</span>
+        <div class="hero-top">
+          <span class="pill"><span class="dot"></span> University of Warsaw · CeNT</span>
+          <span class="host" aria-label="University of Warsaw, Centre of New Technologies">
+            <a href="https://www.uw.edu.pl" rel="noopener" target="_blank"><img src="assets/logo-uw.png" alt="University of Warsaw" width="220" height="220"></a>
+            <a href="https://cent.uw.edu.pl" rel="noopener" target="_blank"><img class="wide" src="assets/logo-cent.png" alt="Centre of New Technologies" width="520" height="81"></a>
+          </span>
+        </div>
         <h1>Understand RNA <em>shapes</em> to design RNA therapeutics</h1>
         <p class="lede">
           RNA does its work in three dimensions, so we start from the shape. The Laboratory of
