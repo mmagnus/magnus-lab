@@ -85,11 +85,9 @@ nav a{
 nav a:hover{color:var(--ink); border-bottom-color:var(--accent)}
 nav a.nav-cta{display:none}
 .hero-top{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
-.host{display:flex; align-items:center; gap:13px; padding-left:18px;
-  border-left:1px solid var(--line)}
+.host{display:flex; align-items:center; gap:18px}
 .host a{display:block; line-height:0}
 .host img{height:36px; width:auto; max-width:132px; object-fit:contain; display:block}
-@media (max-width:560px){.host{padding-left:0; border-left:0}}
 .burger{
   display:none; order:2; margin-left:auto;
   width:42px; height:38px; padding:9px 8px; border:1px solid var(--line);
@@ -575,7 +573,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
     <div class="wrap hero-grid">
       <div>
         <div class="hero-top">
-          <span class="pill"><span class="dot"></span> University of Warsaw · CeNT</span>
           <span class="host" aria-label="University of Warsaw, Centre of New Technologies">
             <a href="https://www.uw.edu.pl" rel="noopener" target="_blank"><img class="wide" src="assets/logo-uw.png" alt="University of Warsaw" width="560" height="249"></a>
             <a href="https://cent.uw.edu.pl" rel="noopener" target="_blank"><img class="wide" src="assets/logo-cent.png" alt="Centre of New Technologies" width="520" height="81"></a>
