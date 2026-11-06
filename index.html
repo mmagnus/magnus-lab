@@ -268,8 +268,8 @@ nav a.nav-cta{display:none}
 
 /* ---------- news ---------- */
 .news-filter{
-  display:flex; gap:8px; flex-wrap:nowrap; margin-top:4px;
-  overflow-x:auto; padding-bottom:4px; scrollbar-width:thin;
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin:0 0 clamp(22px,3vw,30px);
 }
 .news-filter button{flex:none}
 .news-filter button{
@@ -960,8 +960,8 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
         <span class="eyebrow">Latest updates</span>
         <h2>News from the lab</h2>
         <p>New results, people joining, talks and preprints.</p>
-        <div class="news-filter" id="newsfilter" role="group" aria-label="Filter news by kind"></div>
       </div>
+      <div class="news-filter" id="newsfilter" role="group" aria-label="Filter news by kind"></div>
       <div class="news">
         <article class="item">
           <div class="when"><span class="kind k-outreach">Community</span><time datetime="2026-10-21">October 2026</time></div>
