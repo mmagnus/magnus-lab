@@ -347,10 +347,11 @@ nav a.nav-cta{display:none}
 
 /* ---------- publications ---------- */
 .pubs{display:grid; gap:0}
-.pub-split{display:flex; align-items:center; gap:14px; flex-wrap:wrap;
-  padding:0 0 14px 94px}
+.pub-split{display:flex; align-items:center; justify-content:center; gap:14px;
+  flex-wrap:wrap; padding:0 0 16px}
 .pub-split img{height:24px; width:auto; object-fit:contain; display:block}
 .pub-split img.hv{height:30px}
+.pub-split .x{font-family:var(--font-display); font-size:18px; color:var(--ink-3); line-height:1}
 .pub-split span{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.13em;
   text-transform:uppercase; color:var(--ink-3)}
 .pub-split.earlier{margin-top:26px; padding-top:24px; border-top:1px solid var(--line)}
@@ -553,7 +554,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
   body{font-size:16px}
   .team{grid-template-columns:1fr}
   .item,.pub{grid-template-columns:1fr; gap:10px}
-  .pub-split{padding-left:0}
   .item .when{flex-direction:row; align-items:center; gap:10px}
   .addr .row{grid-template-columns:1fr; gap:2px}
 }
@@ -821,6 +821,7 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
       <div class="pubs">
         <div class="pub-split">
           <img src="assets/logo-cent.png" alt="Centre of New Technologies" width="520" height="81">
+          <span class="x">&#215;</span>
           <img class="hv" src="assets/logo-harvard.png" alt="Harvard University" width="320" height="81">
           <span>CeNT &amp; Harvard affiliations</span>
         </div>
