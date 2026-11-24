@@ -583,8 +583,8 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
     </button>
     <nav id="mainnav" aria-label="Main">
       <a href="#research">Research</a>
-      <a href="#news">News</a>
       <a href="#team">Team</a>
+      <a href="#news">News</a>
       <a href="#collaborators">Collaborators</a>
       <a href="#publications">Publications</a>
       <a href="#teaching">Teaching</a>
@@ -984,6 +984,109 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
     </div>
   </section>
 
+  <section id="team">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">People</span>
+        <h2>Meet the team</h2>
+        <p>A group of computational and experimental RNA scientists — and, right now,
+           a few desks still waiting for the right people.</p>
+      </div>
+      <div class="team">
+      
+        <article class="person">
+          <img class="avatar photo" src="assets/marcin-magnus-2026.jpg" alt="Marcin Magnus" width="84" height="84">
+          <!-- previous photo, kept for now: <img class="avatar photo" src="assets/marcin-magnus.jpg" alt="Marcin Magnus" width="360" height="360"> -->
+          <h3>Marcin Magnus</h3>
+          <span class="role">Principal Investigator</span>
+          <p>Computational RNA biologist. PhD with Janusz Bujnicki at IIMCB Warsaw, experimental
+             training with Magda Konarska, an internship with Rhiju Das at Stanford, and a postdoc
+             with Elena Rivas at Harvard. Works on RNA 3D structure prediction, RNA datasets and
+             open-source tooling for structural RNA biology.</p>
+        </article>
+        <article class="person">
+          <img class="avatar photo" src="assets/jadwiga-meissner.jpg" alt="Experimental postdoc" width="84" height="84">
+          <h3>Jadwiga Meissner</h3>
+          <span class="role">Postdoc &#183; wet lab &#183; SELEX</span>
+          <p>Runs in vitro selection of RNA aptamers and tests computationally
+             designed binders at the bench, closing the loop between predicted structures and
+             measured affinity. Funded by the NCN SONATA BIS-15 grant.</p>
+        </article>
+        <article class="person">
+          <img class="avatar photo" src="assets/xareni-reyes-soto.jpg" alt="Xareni Reyes Soto" width="84" height="84">
+          <h3>Xareni Reyes Soto</h3>
+          <span class="role">PhD student &#183; computational</span>
+          <p>Four-year computational doctoral project on RNA design: generative and
+             language-model approaches to ligand-binding RNA, benchmarked against the structures
+             and selection data the lab produces, with a focus on analysis of SELEX data.
+             Funded by the NCN SONATA BIS-15 grant, through the UW doctoral school.</p>
+        </article>
+      </div>
+
+      <div class="team-sub">
+        <h3>Students</h3>
+      </div>
+      <div class="team">
+                <article class="person">
+          <img class="avatar photo" src="assets/anna-rybak.jpg" alt="Anna Rybak" width="84" height="84">
+          <h3>Anna Rybak</h3>
+          <span class="role">Student &#183; computational</span>
+          <p>Bioinformatics student at Wroc&#322;aw University of Science and Technology, with a
+             background in chemistry and scientific computing. Works on molecular dynamics of modified
+             RNAs, on RNA structure refinement and on IRES elements.</p>
+        </article>
+        <article class="person">
+          <div class="avatar" aria-hidden="true">ZS</div>
+          <h3>Zofia Stankowska</h3>
+          <span class="role">Student &#183; computational</span>
+          <p>Works on deep learning for RNA &#8212; training and evaluating models that predict
+             RNA structure from sequence.</p>
+        </article>
+        <article class="person">
+          <div class="avatar" aria-hidden="true">ZC</div>
+          <h3>Zoja Czakaj</h3>
+          <span class="role">Student &#183; computational</span>
+          <p>Works on deep learning for RNA, on the same family of models &#8212; comparing
+             architectures and training setups on the lab's structure datasets.</p>
+        </article>
+      </div>
+
+      <div class="team-sub">
+        <h3>Planned positions</h3>
+        <span>Calls not yet open</span>
+      </div>
+      <div class="team">
+                <article class="person open">
+          <div class="avatar" aria-hidden="true">+</div>
+          <h3>Postdoc — Structural Diffusion Models<span class="todo prog">to be opened 2026</span></h3>
+          <span class="role">Open · computational</span>
+          <p>Generative models that build RNA structure: ligand-conditioned diffusion, denoising
+             of backbones and bases, and the evaluation and data pipelines that keep the
+             benchmarks honest. Funded by the NCN SONATA BIS-15 grant; the call is to be opened in 2026.</p>
+        </article>
+                <article class="person open">
+          <div class="avatar" aria-hidden="true">+</div>
+          <h3>Postdoc — RNA Language Models<span class="todo prog">to be confirmed · 2027</span></h3>
+          <span class="role">Open · computational</span>
+          <p>A new position for someone with a language-model background. RNA sequence,
+             alignments and structure all lend themselves to LLM-style architectures, and this
+             project is about building and evaluating them for RNA design and structure
+             prediction.</p>
+        </article>
+        <article class="person open">
+          <div class="avatar" aria-hidden="true">+</div>
+          <h3>SELEX expert &#8212; part time<span class="todo prog">planned</span></h3>
+          <span class="role">Open &#183; experimental</span>
+          <p>A supporting, part-time role for someone with hands-on SELEX experience: advising on
+             library design and selection rounds, and helping the wet-lab side keep pace with the
+             binders we design computationally. Suited to a researcher who wants to keep a foot in
+             the lab alongside another position.</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
   <section id="news">
     <div class="wrap">
       <div class="sec-head">
@@ -1146,109 +1249,6 @@ footer{border-top:3px solid var(--accent-2); padding-block:32px; color:var(--ink
           </div>
         </article>
       </div>
-    </div>
-  </section>
-
-  <section id="team">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">People</span>
-        <h2>Meet the team</h2>
-        <p>A group of computational and experimental RNA scientists — and, right now,
-           a few desks still waiting for the right people.</p>
-      </div>
-      <div class="team">
-      
-        <article class="person">
-          <img class="avatar photo" src="assets/marcin-magnus-2026.jpg" alt="Marcin Magnus" width="84" height="84">
-          <!-- previous photo, kept for now: <img class="avatar photo" src="assets/marcin-magnus.jpg" alt="Marcin Magnus" width="360" height="360"> -->
-          <h3>Marcin Magnus</h3>
-          <span class="role">Principal Investigator</span>
-          <p>Computational RNA biologist. PhD with Janusz Bujnicki at IIMCB Warsaw, experimental
-             training with Magda Konarska, an internship with Rhiju Das at Stanford, and a postdoc
-             with Elena Rivas at Harvard. Works on RNA 3D structure prediction, RNA datasets and
-             open-source tooling for structural RNA biology.</p>
-        </article>
-        <article class="person">
-          <img class="avatar photo" src="assets/jadwiga-meissner.jpg" alt="Experimental postdoc" width="84" height="84">
-          <h3>Jadwiga Meissner</h3>
-          <span class="role">Postdoc &#183; wet lab &#183; SELEX</span>
-          <p>Runs in vitro selection of RNA aptamers and tests computationally
-             designed binders at the bench, closing the loop between predicted structures and
-             measured affinity. Funded by the NCN SONATA BIS-15 grant.</p>
-        </article>
-        <article class="person">
-          <img class="avatar photo" src="assets/xareni-reyes-soto.jpg" alt="Xareni Reyes Soto" width="84" height="84">
-          <h3>Xareni Reyes Soto</h3>
-          <span class="role">PhD student &#183; computational</span>
-          <p>Four-year computational doctoral project on RNA design: generative and
-             language-model approaches to ligand-binding RNA, benchmarked against the structures
-             and selection data the lab produces, with a focus on analysis of SELEX data.
-             Funded by the NCN SONATA BIS-15 grant, through the UW doctoral school.</p>
-        </article>
-      </div>
-
-      <div class="team-sub">
-        <h3>Students</h3>
-      </div>
-      <div class="team">
-                <article class="person">
-          <img class="avatar photo" src="assets/anna-rybak.jpg" alt="Anna Rybak" width="84" height="84">
-          <h3>Anna Rybak</h3>
-          <span class="role">Student &#183; computational</span>
-          <p>Bioinformatics student at Wroc&#322;aw University of Science and Technology, with a
-             background in chemistry and scientific computing. Works on molecular dynamics of modified
-             RNAs, on RNA structure refinement and on IRES elements.</p>
-        </article>
-        <article class="person">
-          <div class="avatar" aria-hidden="true">ZS</div>
-          <h3>Zofia Stankowska</h3>
-          <span class="role">Student &#183; computational</span>
-          <p>Works on deep learning for RNA &#8212; training and evaluating models that predict
-             RNA structure from sequence.</p>
-        </article>
-        <article class="person">
-          <div class="avatar" aria-hidden="true">ZC</div>
-          <h3>Zoja Czakaj</h3>
-          <span class="role">Student &#183; computational</span>
-          <p>Works on deep learning for RNA, on the same family of models &#8212; comparing
-             architectures and training setups on the lab's structure datasets.</p>
-        </article>
-      </div>
-
-      <div class="team-sub">
-        <h3>Planned positions</h3>
-        <span>Calls not yet open</span>
-      </div>
-      <div class="team">
-                <article class="person open">
-          <div class="avatar" aria-hidden="true">+</div>
-          <h3>Postdoc — Structural Diffusion Models<span class="todo prog">to be opened 2026</span></h3>
-          <span class="role">Open · computational</span>
-          <p>Generative models that build RNA structure: ligand-conditioned diffusion, denoising
-             of backbones and bases, and the evaluation and data pipelines that keep the
-             benchmarks honest. Funded by the NCN SONATA BIS-15 grant; the call is to be opened in 2026.</p>
-        </article>
-                <article class="person open">
-          <div class="avatar" aria-hidden="true">+</div>
-          <h3>Postdoc — RNA Language Models<span class="todo prog">to be confirmed · 2027</span></h3>
-          <span class="role">Open · computational</span>
-          <p>A new position for someone with a language-model background. RNA sequence,
-             alignments and structure all lend themselves to LLM-style architectures, and this
-             project is about building and evaluating them for RNA design and structure
-             prediction.</p>
-        </article>
-        <article class="person open">
-          <div class="avatar" aria-hidden="true">+</div>
-          <h3>SELEX expert &#8212; part time<span class="todo prog">planned</span></h3>
-          <span class="role">Open &#183; experimental</span>
-          <p>A supporting, part-time role for someone with hands-on SELEX experience: advising on
-             library design and selection rounds, and helping the wet-lab side keep pace with the
-             binders we design computationally. Suited to a researcher who wants to keep a foot in
-             the lab alongside another position.</p>
-        </article>
-      </div>
-
     </div>
   </section>
 
